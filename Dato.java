@@ -24,33 +24,31 @@ public class Dato {
         String cadenas[];
         
         File archivo = new File(archivoE);        
-        FileReader lector = new FileReader(archivo); 
-        BufferedReader lectura = new BufferedReader(lector);
-                
-        for(int i=0; i<inicio; i++){
-            lectura.readLine();
+        BufferedReader lectura;
+        try (FileReader lector = new FileReader(archivo)) {
+            lectura = new BufferedReader(lector);
+            for(int i=0; i<inicio; i++){
+                lectura.readLine();
+            }   while(inicio<fin){            
+                cadena = lectura.readLine();
+                cadenas = cadena.split(",");
+                Alumno alumno = new Alumno(cadenas[0], cadenas[1], Integer.valueOf(cadenas[2]));
+                datos.add(alumno);
+                inicio++;
+            }
         }
-        while(inicio<fin){            
-            cadena = lectura.readLine();
-            cadenas = cadena.split(",");        
-            Alumno alumno = new Alumno(cadenas[0], cadenas[1], Integer.valueOf(cadenas[2]));
-            datos.add(alumno);
-            inicio++;
-        }
-               
-        lector.close();
         lectura.close();
         return datos;
     }
     
     public void escribirDatos(ArrayList<Alumno> alumnos, String archivoD) throws IOException{
         File archivo = new File(archivoD);     
-        FileWriter escribir = new FileWriter(archivo);
-        for(int i=0; i<alumnos.size(); i++){
-            escribir.write(alumnos.get(i).getNombre().concat(",")
-                    .concat(alumnos.get(i).getApellido().concat(",")
-                        .concat(String.valueOf(alumnos.get(i).getNoCuenta()))));          
+        try (FileWriter escribir = new FileWriter(archivo)) {
+            for(int i=0; i<alumnos.size(); i++){
+                escribir.write(alumnos.get(i).getNombre().concat(",")
+                        .concat(alumnos.get(i).getApellido().concat(",")
+                                .concat(String.valueOf(alumnos.get(i).getNoCuenta())).concat("\n")));          
+            }
         }
-         escribir.close();
     }
 }
