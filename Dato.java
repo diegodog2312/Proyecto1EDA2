@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto1eda2;
+
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,8 +17,8 @@ import java.util.ArrayList;
  * En esta clase se obtienen los datos de un archivon de texto
  * @author diegoignacionunezhernandez
  */
-public class Dato {        
-    public ArrayList leerDato(int inicio, int fin, String archivoE) throws FileNotFoundException, IOException{
+public class Dato {
+    public ArrayList<Alumno> leerDato(int inicio, int fin, String archivoE) throws FileNotFoundException, IOException{ //Faltaba especificar el tipo de dato de la lista
         ArrayList<Alumno> datos = new ArrayList<>();
         String cadena;
         
