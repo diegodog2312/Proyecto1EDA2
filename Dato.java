@@ -18,7 +18,8 @@ import java.util.ArrayList;
  * @author diegoignacionunezhernandez
  */
 public class Dato {
-    public ArrayList leerDato(int inicio, int fin, String archivoE) throws FileNotFoundException, IOException{
+    public ArrayList<Alumno> leerDato(int inicio, int fin, String archivoE) throws FileNotFoundException, IOException{
+        //Especificar el tipo Alumno en la creación de la lista
         ArrayList<Alumno> datos = new ArrayList<>();
         String cadena;
         String cadenas[];
