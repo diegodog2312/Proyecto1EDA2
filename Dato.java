@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,8 +29,9 @@ public class Dato {
                 lectura.readLine();
             }   
             while(inicio<fin){            
-                cadena = lectura.readLine();                
-                Alumno alumno = obtenerDato(cadena);
+                cadena = lectura.readLine();
+                cadenas = cadena.split(",");
+                Alumno alumno = new Alumno(cadenas[0], cadenas[1], Integer.valueOf(cadenas[2]));
                 datos.add(alumno);
                 inicio++;
             }
