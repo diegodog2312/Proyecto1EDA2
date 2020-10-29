@@ -17,12 +17,10 @@ import java.util.ArrayList;
  * En esta clase se obtienen los datos de un archivon de texto
  * @author diegoignacionunezhernandez
  */
-public class Dato {
-    public ArrayList<Alumno> leerDato(int inicio, int fin, String archivoE) throws FileNotFoundException, IOException{
-        //Especificar el tipo Alumno en la creación de la lista
+public class Dato {        
+    public ArrayList leerDato(int inicio, int fin, String archivoE) throws FileNotFoundException, IOException{
         ArrayList<Alumno> datos = new ArrayList<>();
         String cadena;
-        String cadenas[];
         
         File archivo = new File(archivoE);        
         BufferedReader lectura;
@@ -30,10 +28,10 @@ public class Dato {
             lectura = new BufferedReader(lector);
             for(int i=0; i<inicio; i++){
                 lectura.readLine();
-            }   while(inicio<fin){            
-                cadena = lectura.readLine();
-                cadenas = cadena.split(",");
-                Alumno alumno = new Alumno(cadenas[0], cadenas[1], Integer.valueOf(cadenas[2]));
+            }   
+            while(inicio<fin){            
+                cadena = lectura.readLine();                
+                Alumno alumno = obtenerDato(cadena);
                 datos.add(alumno);
                 inicio++;
             }
@@ -48,8 +46,33 @@ public class Dato {
             for(int i=0; i<alumnos.size(); i++){
                 escribir.write(alumnos.get(i).getNombre().concat(",")
                         .concat(alumnos.get(i).getApellido().concat(",")
-                                .concat(String.valueOf(alumnos.get(i).getNoCuenta())).concat("\n")));          
-            }
+                                .concat(String.valueOf(alumnos.get(i).getNoCuenta())).concat("\n")));                       
+            }            
+        }
+    }
+    
+    public Alumno obtenerDato(String cadena){
+        String datos[] = cadena.split(",");
+        Alumno alumno = new Alumno(datos[0], datos[1], Integer.valueOf(datos[2]));
+        return alumno;
+    }
+    
+    public void escribirDato(Alumno alumno, String archivoD) throws IOException{
+        File archivo = new File(archivoD);     
+        try(FileWriter escribir = new FileWriter(archivo,true)){       
+            escribir.write(alumno.getNombre().concat(",")
+                        .concat(alumno.getApellido().concat(",")
+                                .concat(String.valueOf(alumno.getNoCuenta())).concat("\n")));                
+        }
+    }
+    
+    public void escribirDato2(Alumno alumno, String archivoD) throws IOException{
+        File archivo = new File(archivoD);     
+        try(FileWriter escribir = new FileWriter(archivo,true)){       
+            escribir.write(alumno.getNombre().concat(",")
+                        .concat(alumno.getApellido().concat(",")
+                                .concat(String.valueOf(alumno.getNoCuenta())).concat("\n")));    
+            escribir.write("\n");
         }
     }
 }
