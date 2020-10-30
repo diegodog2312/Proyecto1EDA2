@@ -1,13 +1,10 @@
-import java.util.ArrayList;
-import proyecto1eda2.Alumno;
-import proyecto1eda2.Dato;
 
-public class leerEscribirPru {
-    public static void main(String[] args){
+import java.io.*;
+public class LeerEscribirPru {
+    public static void main(String[] args)throws IOException {
         String nombreArchivo = args[0];
-        Dato lecEsc = new Dato();
-        ArrayList<Alumno> alumnos;
-        alumnos = lecEsc.leerDato(0, 99, "datos.txt");
-        lecEsc.escribirDatos(alumnos, "archivoEscritura.txt");
+        Polifase prueba = new Polifase();
+        //prueba.sortNum(nombreArchivo);
+        prueba.sortStr(nombreArchivo);
     }
 }
