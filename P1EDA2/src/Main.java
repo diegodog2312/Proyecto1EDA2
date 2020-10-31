@@ -1,5 +1,4 @@
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 import mezclaEquilibrada.*;
@@ -74,11 +73,11 @@ public class Main {
                 int num = Integer.valueOf(sc.nextLine());
                 switch(num){
                     case 1:
-
+                        prueba.sortNom(nombre);
                     break;
                     
                     case 2:
-                        prueba.sortStr(nombre);
+                        prueba.sortApe(nombre);
                     break;
                     
                     case 3:                        

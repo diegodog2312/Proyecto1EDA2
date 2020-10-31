@@ -19,12 +19,25 @@ public class InsertionSort {
         }  
     }
 
-    public static void inSortStr(ArrayList<Alumno> alumnos) {  
+    public static void inSortApe(ArrayList<Alumno> alumnos) {  
         int n = alumnos.size();  
         for (int j = 1; j < n; j++) {  
             Alumno key = alumnos.get(j);  
             int i = j-1;  
             while ( (i > -1) && ( alumnos.get(i).getApellido().toUpperCase().compareTo(key.getApellido().toUpperCase())>0 ) ){  
+                alumnos.set(i+1,alumnos.get(i));  
+                i--;  
+            }  
+            alumnos.set(i+1 , key); //array[i+1] = key;  
+        }  
+    }
+    
+        public static void inSortNom(ArrayList<Alumno> alumnos) {  
+        int n = alumnos.size();  
+        for (int j = 1; j < n; j++) {  
+            Alumno key = alumnos.get(j);  
+            int i = j-1;  
+            while ( (i > -1) && ( alumnos.get(i).getNombre().toUpperCase().compareTo(key.getNombre().toUpperCase())>0 ) ){  
                 alumnos.set(i+1,alumnos.get(i));  
                 i--;  
             }  
