@@ -87,14 +87,24 @@ public class Merge {
             }
             while(strR!=null&&!strR.isEmpty()){
                 Alumno ultimoBloque = transDato.obtenerDato(strR);
-                transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
+                if(archivo){
+                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escL);
+                }else{
+                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
+                }
                 strR=checkR.readLine();
             }
             while(strL!=null&&!strL.isEmpty()){
                 Alumno ultimoBloque = transDato.obtenerDato(strL);
-                transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
-                strL=checkL.readLine();
+                if(archivo){
+                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escL);
+                }else{
+                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
+                }
+                    strL=checkL.readLine();
             }
+            rL.close();
+            rR.close();
             checkL.close();
             checkR.close();
             String nextWriteR ="F1"+"I"+iteration+".txt"; 
@@ -103,6 +113,10 @@ public class Merge {
 
             mergeNum(this.folderPath+"/"+escR,this.folderPath+"/"+escL, nextWriteR, nextWriteL, iteration);        
         }
+        rL.close();
+        rR.close();
+        checkL.close();
+        checkR.close();
     }
     public void mergeApe(String leerR, String leerL, String escR, String escL, int iteration) throws IOException{        
         FilesDirect admiFilesDirect = new FilesDirect();
@@ -178,14 +192,24 @@ public class Merge {
             }
             while(strR!=null&&!strR.isEmpty()){
                 Alumno ultimoBloque = transDato.obtenerDato(strR);
-                transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
+                if(archivo){
+                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escL);
+                }else{
+                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
+                }
                 strR=checkR.readLine();
             }
             while(strL!=null&&!strL.isEmpty()){
                 Alumno ultimoBloque = transDato.obtenerDato(strL);
-                transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
-                strL=checkL.readLine();
+                if(archivo){
+                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escL);
+                }else{
+                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
+                }
+                    strL=checkL.readLine();
             }
+            rL.close();
+            rR.close();
             checkL.close();
             checkR.close();
             String nextWriteR ="F1"+"I"+iteration+".txt"; 
@@ -194,6 +218,10 @@ public class Merge {
 
             mergeApe(this.folderPath+"/"+escR,this.folderPath+"/"+escL, nextWriteR, nextWriteL, iteration);        
         }
+        rL.close();
+        rR.close();
+        checkL.close();
+        checkR.close();
     }
         public void mergeNom(String leerR, String leerL, String escR, String escL, int iteration) throws IOException{        
         FilesDirect admiFilesDirect = new FilesDirect();
@@ -212,7 +240,6 @@ public class Merge {
             Dato transDato = new Dato();
             boolean archivo = true;
             while(strR!=null&&strL!=null){
-
                 while((strR!=null&&!strR.isEmpty())&&(strL!=null&&!strL.isEmpty())){ //Mientras no se llege al final del bloque o del archivo
                     Alumno alumR;
                     Alumno alumL;
@@ -269,21 +296,35 @@ public class Merge {
             }
             while(strR!=null&&!strR.isEmpty()){
                 Alumno ultimoBloque = transDato.obtenerDato(strR);
-                transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
+                if(archivo){
+                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escL);
+                }else{
+                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
+                }
                 strR=checkR.readLine();
             }
             while(strL!=null&&!strL.isEmpty()){
                 Alumno ultimoBloque = transDato.obtenerDato(strL);
-                transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
-                strL=checkL.readLine();
+                if(archivo){
+                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escL);
+                }else{
+                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
+                }
+                    strL=checkL.readLine();
             }
+            rL.close();
+            rR.close();
             checkL.close();
             checkR.close();
             String nextWriteR ="F1"+"I"+iteration+".txt"; 
             String nextWriteL ="F2"+"I"+iteration+".txt";
             iteration++;
-
+            
             mergeNom(this.folderPath+"/"+escR,this.folderPath+"/"+escL, nextWriteR, nextWriteL, iteration);        
         }
+        rL.close();
+        rR.close();
+        checkL.close();
+        checkR.close();
     }
 }

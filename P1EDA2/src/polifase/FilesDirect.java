@@ -14,7 +14,7 @@ public class FilesDirect {
         return folderpath;
     }
 
-    public void crearDirectorio(){
+    public void crearDirectorio() throws IOException{
         System.out.println(folderpath);
         File directorio = new File(folderpath);
         if (!directorio.exists()) {
@@ -25,6 +25,12 @@ public class FilesDirect {
             }
         }else{
             System.out.println("El directorio existe");
+            eliminarDirectorio(directorio);
+             if (directorio.mkdirs()) {
+                System.out.println("Directorio creado");
+            } else {
+                System.out.println("Error al crear directorio");
+            }
         }
     }
 
@@ -32,12 +38,22 @@ public class FilesDirect {
         String filePath = folderpath+ "/" + nombre;
         File file = new File(filePath);
         // Si el archivo no existe es creado
-        file.delete();
         if (!file.exists()) {
             System.out.println(filePath);
             file.createNewFile();
-        }else{
-            System.out.println("El archivo no se pudo limpiar! el algoritmo procederá con errores");
+        }
+    }
+    void eliminarDirectorio(File archivo) throws IOException {
+        if (archivo.isDirectory()) {
+            File[] entries = archivo.listFiles();
+                if (entries != null) {
+                    for (File entry : entries) {
+                        eliminarDirectorio(entry);
+                    }
+            }
+        }
+        if (!archivo.delete()) {
+          throw new IOException("Error al eliminar " + archivo);
         }
     }
 }

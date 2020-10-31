@@ -53,7 +53,7 @@ public class Polifase {
         contar.close();
         lectura.close();
     }
-    public void sortAppe(String nombreArch) throws IOException{
+    public void sortApe(String nombreArch) throws IOException{
         FilesDirect admiFiles = new FilesDirect();
         folderpath = admiFiles.rutaFolder();
         File lista = new File(nombreArch);
