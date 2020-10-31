@@ -15,7 +15,6 @@ public class FilesDirect {
     }
 
     public void crearDirectorio() throws IOException{
-        System.out.println(folderpath);
         File directorio = new File(folderpath);
         if (!directorio.exists()) {
             if (directorio.mkdirs()) {
@@ -39,7 +38,6 @@ public class FilesDirect {
         File file = new File(filePath);
         // Si el archivo no existe es creado
         if (!file.exists()) {
-            System.out.println(filePath);
             file.createNewFile();
         }
     }

@@ -34,13 +34,12 @@ public class Merge {
                 while((strR!=null&&!strR.isEmpty())&&(strL!=null&&!strL.isEmpty())){ //Mientras no se llege al final del bloque o del archivo
                     Alumno alumR;
                     Alumno alumL;
-                    System.out.println(strR+" "+strL);
                     alumR = transDato.obtenerDato(strR);
                     alumL = transDato.obtenerDato(strL);
 
                     if(alumL.getNoCuenta()<=alumR.getNoCuenta()){
                         if(archivo){
-                            System.out.println("Aqui");
+    
                             transDato.escribirDato(alumL,this.folderPath+"/"+escL);
                         }else{
                             transDato.escribirDato(alumL,this.folderPath+"/"+escR);
@@ -139,13 +138,11 @@ public class Merge {
                 while((strR!=null&&!strR.isEmpty())&&(strL!=null&&!strL.isEmpty())){ //Mientras no se llege al final del bloque o del archivo
                     Alumno alumR;
                     Alumno alumL;
-                    System.out.println(strR+" "+strL);
                     alumR = transDato.obtenerDato(strR);
                     alumL = transDato.obtenerDato(strL);
 
                     if(alumL.getApellido().toUpperCase().compareTo(alumR.getApellido().toUpperCase())<=0){
                         if(archivo){
-                            System.out.println("Aqui");
                             transDato.escribirDato(alumL,this.folderPath+"/"+escL);
                         }else{
                             transDato.escribirDato(alumL,this.folderPath+"/"+escR);
@@ -243,13 +240,12 @@ public class Merge {
                 while((strR!=null&&!strR.isEmpty())&&(strL!=null&&!strL.isEmpty())){ //Mientras no se llege al final del bloque o del archivo
                     Alumno alumR;
                     Alumno alumL;
-                    System.out.println(strR+" "+strL);
+             
                     alumR = transDato.obtenerDato(strR);
                     alumL = transDato.obtenerDato(strL);
 
                     if(alumL.getNombre().toUpperCase().compareTo(alumR.getNombre().toUpperCase())<=0){
                         if(archivo){
-                            System.out.println("Aqui");
                             transDato.escribirDato(alumL,this.folderPath+"/"+escL);
                         }else{
                             transDato.escribirDato(alumL,this.folderPath+"/"+escR);
