@@ -2,7 +2,6 @@ package mezclaEquilibrada;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import dato.*;
 
 /**
  *

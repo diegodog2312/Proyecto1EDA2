@@ -96,10 +96,18 @@ public class MezclaNombre extends MezclaEquilibrada{
 
 
         cadenaf1=lectura_f1.readLine();        
-        if(cadenaf1==null) return;
+        if(cadenaf1==null){
+            lectura_f1.close();
+            lectura_f2.close();
+            return;
+        }
         alumnof1 = dato.obtenerDato(cadenaf1);
         cadenaf2=lectura_f2.readLine();
-        if(cadenaf2==null) return;
+        if(cadenaf2==null){
+            lectura_f1.close();
+            lectura_f2.close();
+            return;
+        }
         alumnof2 = dato.obtenerDato(cadenaf2);               
         
         do{
