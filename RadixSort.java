@@ -71,7 +71,7 @@ public class RadixSort {
             f8.createNewFile();
             f9.createNewFile();
             list.createNewFile();
-            //dO.createNewFile();
+            dO.createNewFile();
             
             FileReader reader_f0 = new FileReader(f0);
             BufferedReader read_f0 = new BufferedReader(reader_f0);
@@ -244,6 +244,17 @@ public class RadixSort {
                     dato.escribirDato(alumno, "datosordenados.txt");
                 }
             }
+            read_list.close();
+            read_f1.close();
+            read_f2.close();
+            read_f3.close();
+            read_f4.close();
+            read_f5.close();
+            read_f6.close();
+            read_f7.close();
+            read_f8.close();
+            read_f9.close();
+            read_f0.close();
         }
         
         public void printIte(String archivoD, int ite) throws IOException{
