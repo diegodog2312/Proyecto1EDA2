@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import dato.*;
 
 /**
  *
@@ -16,7 +17,7 @@ public class MezclaEquilibrada {
         boolean b;
          b = mezclaECuenta(archivo);    
         do{
-            mezclaDCuenta(b);
+            mezclaDCuenta(b);            
             b = mezclaECuenta("f0.txt");
         } while(b==false);
     }
