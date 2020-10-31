@@ -1,4 +1,4 @@
-package mezclaEqulibrada;
+package mezclaEquilibrada;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -89,9 +89,8 @@ public class MezclaEquilibrada {
                 }
             }    
         }while(cadena!=null);                           
-        
-        if(f2.length()==0) return true;
-                           
+        lectura.close();
+        if(f2.length()==0) return true;                   
         return false;
     }
                             
@@ -119,10 +118,18 @@ public class MezclaEquilibrada {
 
 
         cadenaf1=lectura_f1.readLine();        
-        if(cadenaf1==null) return;
+        if(cadenaf1==null) {
+            lectura_f1.close();
+            lectura_f2.close();
+            return;
+        }
         alumnof1 = dato.obtenerDato(cadenaf1);
         cadenaf2=lectura_f2.readLine();
-        if(cadenaf2==null) return;
+        if(cadenaf2==null) {
+            lectura_f1.close();
+            lectura_f2.close();
+            return;
+        }
         alumnof2 = dato.obtenerDato(cadenaf2);               
         
         do{
@@ -171,7 +178,9 @@ public class MezclaEquilibrada {
                     } while(cadenaf2!=null&&!(cadenaf2.isEmpty()));                  
                 }
             }                               
-        }while(cadenaf1!=null&&cadenaf2!=null);                
+        }while(cadenaf1!=null&&cadenaf2!=null);
+        lectura_f1.close();
+        lectura_f2.close();                
     }
     
     public boolean mezclaENombre(String archivo) throws IOException{   
@@ -223,7 +232,7 @@ public class MezclaEquilibrada {
                 }
             }    
         }while(cadena!=null);                           
-        
+        lectura.close();
         if(f2.length()==0) return true; 
                          
         return false;
@@ -253,10 +262,18 @@ public class MezclaEquilibrada {
 
 
         cadenaf1=lectura_f1.readLine();        
-        if(cadenaf1==null) return;
+        if(cadenaf1==null){
+            lectura_f1.close();
+            lectura_f2.close();
+            return;
+        }
         alumnof1 = dato.obtenerDato(cadenaf1);
         cadenaf2=lectura_f2.readLine();
-        if(cadenaf2==null) return;
+        if(cadenaf2==null){
+            lectura_f1.close(); //Cerrar la clase lectora
+            lectura_f2.close();
+            return;
+        }
         alumnof2 = dato.obtenerDato(cadenaf2);               
         
         do{
@@ -305,7 +322,9 @@ public class MezclaEquilibrada {
                     } while(cadenaf2!=null&&!(cadenaf2.isEmpty()));                  
                 }
             }                               
-        }while(cadenaf1!=null&&cadenaf2!=null);                
+        }while(cadenaf1!=null&&cadenaf2!=null);          
+        lectura_f1.close();
+        lectura_f2.close(); //cerrar objetos de lectura      
     }
     
     public boolean mezclaEApellido(String archivo) throws IOException{   
@@ -358,8 +377,9 @@ public class MezclaEquilibrada {
             }    
         }while(cadena!=null);                           
         
+        lectura.close();
         if(f2.length()==0) return true; 
-                         
+                        
         return false;
     }
     
@@ -387,7 +407,11 @@ public class MezclaEquilibrada {
 
 
         cadenaf1=lectura_f1.readLine();        
-        if(cadenaf1==null) return;
+        if(cadenaf1==null){
+            lectura_f1.close();
+            lectura_f2.close();
+            return;
+        }
         alumnof1 = dato.obtenerDato(cadenaf1);
         cadenaf2=lectura_f2.readLine();
         if(cadenaf2==null) return;
