@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package RadixSort;
+package Radix;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,7 +12,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.nio.file.*;
 import dato.*;
 
 /**
