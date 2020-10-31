@@ -16,9 +16,7 @@ import Radix.*;
  * @author Sofia
  */
 public class Main {
-        public static void main(String[] args) throws IOException{
-        int arr[];
-        int i;
+        public static void main(String[] args) throws IOException{        
         
         System.out.println("PROYECTO 1 EDA II");
         System.out.println("Cabello Díaz Sofía Elizabeth"); 
@@ -28,8 +26,7 @@ public class Main {
             System.out.println("\n\nMENU DE ORDENAMIENTO");
             System.out.println("\nIngrese nombre de archivo a ordenar:   ");  
             Scanner sc = new Scanner(System.in);
-            String nombre = sc.nextLine();
-            File file = new File(nombre);
+            String nombre = sc.nextLine();            
          
             RadixSort radix = new RadixSort();
 
@@ -37,6 +34,7 @@ public class Main {
             System.out.println("\tA. Mezcla equilibrada");
             System.out.println("\tB. Polifase");
             System.out.println("\tC. Radix");
+            System.out.println("\tD) Salir");
             String opcion = sc.nextLine();
         
             if(opcion.equals("C")){
@@ -50,20 +48,20 @@ public class Main {
                 System.out.println("\t3. NoCuenta");
                 int num = Integer.valueOf(sc.nextLine());
                 switch(num){
-                    case 1 -> {
+                    case 1:
                         MezclaEquilibrada mn = new MezclaNombre();
                         mn.mezcla(nombre);
-                    }
+                    break;
                     
-                    case 2 -> {
+                    case 2:
                         MezclaEquilibrada ma = new MezclaApellido();
                         ma.mezcla(nombre);
-                    }
+                    break;
                     
-                    case 3 -> {
+                    case 3:
                         MezclaEquilibrada mc = new MezclaCuenta();
                         mc.mezcla(nombre);
-                    }
+                    break;
                 }
             }
             
@@ -75,21 +73,23 @@ public class Main {
                 System.out.println("\t3. NoCuenta");
                 int num = Integer.valueOf(sc.nextLine());
                 switch(num){
-                    case 1 -> {
+                    case 1:
 
-                    }
+                    break;
                     
-                    case 2 -> {
+                    case 2:
                         prueba.sortStr(nombre);
-                    }
+                    break;
                     
-                    case 3 -> {
-                        MezclaEquilibrada mc = new MezclaCuenta();
+                    case 3:                        
                         prueba.sortNum(nombre);
-                    }
+                    break;
                 } 
             }
          
+            if(opcion.equals("D")){
+                break;
+            }
             System.out.println("***   Archivo ordenado   ***");
         }
     }
