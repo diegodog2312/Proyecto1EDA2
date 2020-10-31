@@ -1,3 +1,4 @@
+package polifase;
 
 import java.io.*;
 public class LeerEscribirPru {
@@ -6,5 +7,6 @@ public class LeerEscribirPru {
         Polifase prueba = new Polifase();
         //prueba.sortNum(nombreArchivo);
         prueba.sortStr(nombreArchivo);
+        
     }
 }

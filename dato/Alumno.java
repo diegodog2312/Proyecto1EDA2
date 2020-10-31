@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package dato;
 
 /**
  *
  * @author diegoignacionunezhernandez
  */
+
+
 public class Alumno {
     private String nombre;
     private String apellido;

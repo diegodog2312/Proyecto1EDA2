@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+package dato;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -59,7 +61,8 @@ public class Dato {
                         .concat(alumnos.get(i).getApellido().concat(",")
                                 .concat(String.valueOf(alumnos.get(i).getNoCuenta())).concat("\n")));                       
             }
-            escribir.write("\n");            //Linea extra entre bloques
+            escribir.write("\n");  
+            escribir.flush();          //Linea extra entre bloques
         }
         
     }

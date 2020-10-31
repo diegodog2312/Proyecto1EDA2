@@ -1,3 +1,5 @@
+package polifase;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -5,7 +7,7 @@ public class FilesDirect {
     private String folderpath;
 
     public FilesDirect(){
-        folderpath = new File("").getAbsolutePath()+"/polifase";
+        folderpath = new File("").getAbsolutePath()+"/polifaseFiles";
     }
     
     public String rutaFolder(){
