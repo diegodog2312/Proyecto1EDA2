@@ -81,6 +81,15 @@ public class Dato {
         }
 
     }
+    
+    public void addHash(String archivoD)throws IOException{
+        File archivo = new File(archivoD);     
+        try(FileWriter escribir = new FileWriter(archivo,true)){       
+            escribir.write("#");
+            
+        }
+
+    }
 
     public void escribirDato(Alumno alumno, String archivoD) throws IOException{
         File archivo = new File(archivoD);     

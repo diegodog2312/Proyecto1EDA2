@@ -25,9 +25,9 @@ public class MezclaCuenta extends MezclaEquilibrada{
                   
         File f1 = new File("f1.txt");
         File f2 = new File("f2.txt");
-
-        f1.delete();
-        f2.delete();
+        
+        //f1.delete();
+        //f2.delete();
        
         f1.createNewFile();
         f2.createNewFile();
@@ -62,7 +62,10 @@ public class MezclaCuenta extends MezclaEquilibrada{
                     b=true;
                 }
             }    
-        }while(cadena!=null);                           
+        }while(cadena!=null);     
+        
+        dato.addHash(f1.getName());
+        dato.addHash(f2.getName());
         
         lectura.close();
         
@@ -82,7 +85,7 @@ public class MezclaCuenta extends MezclaEquilibrada{
         Dato dato = new Dato();  
         
         File f0 = new File("f0.txt");          
-        f0.delete();
+        //f0.delete();
         f0.createNewFile();
                         
         File f1 = new File("f1.txt");
@@ -157,6 +160,8 @@ public class MezclaCuenta extends MezclaEquilibrada{
                 }
             }                               
         }while(cadenaf1!=null&&cadenaf2!=null);   
+        
+        dato.addHash(f0.getName());
         
         lectura_f1.close();
         lectura_f2.close();
