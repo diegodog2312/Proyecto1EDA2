@@ -24,7 +24,14 @@ public class Polifase {
         Dato getDatos = new Dato();
         admiFiles.crearDirectorio();
         admiFiles.crearArchivo("F1.txt");
-        admiFiles.crearArchivo("F2.txt"); 
+        admiFiles.crearArchivo("F2.txt");
+        admiFiles.crearArchivo("F3.txt");
+        admiFiles.crearArchivo("F4.txt");
+        
+        getDatos.addString(folderpath+"/F1.txt","@\n");
+        getDatos.addString(folderpath+"/F2.txt","@\n");
+        getDatos.addString(folderpath+"/F3.txt","@\n");
+        getDatos.addString(folderpath+"/F4.txt","@\n");
         do{
         
             while(cadena!=null&&!cadena.isEmpty()&&contador<10) { 
@@ -46,9 +53,8 @@ public class Polifase {
             }
 
         }while(bandera);
-
-
-        merge.mergeNum(folderpath+"/F1.txt",folderpath+"/F2.txt","F1I0.txt","F2I0.txt", 1);
+        
+        //merge.mergeNum(folderpath+"/F1.txt",folderpath+"/F2.txt",folderpath+"/F3.txt",folderpath+"/F4.txt",1);
         
         contar.close();
         lectura.close();

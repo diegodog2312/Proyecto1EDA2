@@ -73,10 +73,10 @@ public class Dato {
         Alumno alumno = new Alumno(datos[0], datos[1], Integer.valueOf(datos[2]));
         return alumno;
     }
-    public void addSalto(String archivoD)throws IOException{
+    public void addString(String archivoD,String string)throws IOException{
         File archivo = new File(archivoD);     
         try(FileWriter escribir = new FileWriter(archivo,true)){       
-            escribir.write("\n");
+            escribir.write(string);
             
         }
 
