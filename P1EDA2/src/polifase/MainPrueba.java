@@ -14,6 +14,6 @@ import java.io.IOException;
 public class MainPrueba {
     public static void main (String [] args) throws IOException{
         Polifase prueba = new Polifase();
-        prueba.sortNum("datos.txt");
+        prueba.sortNom("datos.txt");
     }
 }

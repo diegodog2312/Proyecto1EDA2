@@ -14,23 +14,16 @@ public class Merge {
     }
 
     public void mergeNum(String leerR, String leerL, String escR, String escL, int iteration) throws IOException{        
-        FilesDirect admiFilesDirect = new FilesDirect();
+
         File r = new File(leerR);
         File l = new File(leerL); 
-        File wr = new File(escR);
-        File wl = new File(escL);
         FileReader rR = new FileReader(r);
         FileReader rL = new FileReader(l);
-        FileReader rWR = new FileReader(wr);
-        FileReader rWL = new FileReader (wl);
         BufferedReader checkR = new BufferedReader(rR);
         BufferedReader checkL = new BufferedReader(rL);
-        BufferedReader checkWR = new BufferedReader(rWR);
-        BufferedReader checkWL = new BufferedReader(rWL);
         String strR = checkR.readLine();
         String strL = checkL.readLine();
-        String strWR = checkWR.readLine();
-        String strWL = checkWL.readLine();
+
         
              //No se crearán archivos ahora
             
@@ -46,149 +39,235 @@ public class Merge {
         */     
         int numeroArrobas;
         if(iteration%2==0){
-            numeroArrobas = iteration;
+            numeroArrobas = iteration/2;
+        }else{
+            numeroArrobas = (iteration+1)/2;
         }
-             
-        Dato transDato = new Dato();
-        boolean archivo = true;
-        while(strR!=null&&strL!=null){
-            /*
-            Mientras no se llege al final de del bloque o de la iteración
-            */
-            while((strR!=null&&!strR.isEmpty())&&(strL!=null&&!strL.isEmpty())){
-                Alumno alumR;
-                Alumno alumL;
-                alumR = transDato.obtenerDato(strR);
-                alumL = transDato.obtenerDato(strL);
+        /*
+        Los siguentes while colocan al lector en la iteración correcta 
+        */
+        int countArrobas=1;
+        while(countArrobas<numeroArrobas){
+            strR = checkR.readLine();
+            if(strR.equals("@")){
+                countArrobas++;
+            }
+        }
+       countArrobas=1;
+        while(countArrobas<numeroArrobas){
 
-                if(alumL.getNoCuenta()<=alumR.getNoCuenta()){
-                    if(archivo){
+            strL = checkL.readLine();
+            if(strL.equals("@")){
+                countArrobas++;
+            }
+        }
 
-                        transDato.escribirDato(alumL,this.folderPath+"/"+escL);
+        //Lee la primera linea de la iteracion
+        strR = checkR.readLine();
+        strL = checkL.readLine();
+        System.out.println("strR: "+strR+" strL: "+strL);
+        if(!strR.isEmpty()&&!strL.isEmpty()){     
+            Dato transDato = new Dato();
+            boolean archivo = true;
+            //Añade el @indicando el incio de iteración
+            transDato.addString(escR,"@\n");
+            transDato.addString(escL,"@\n");
+            while(strR!=null&&strL!=null){
+                /*
+                Mientras no se llege al final de del bloque o de la iteración
+                */
+                while((strR!=null&&!strR.isEmpty())&&(strL!=null&&!strL.isEmpty())){
+                    Alumno alumR;
+                    Alumno alumL;
+                    alumR = transDato.obtenerDato(strR);
+                    alumL = transDato.obtenerDato(strL);
+
+                    if(alumL.getNoCuenta()<=alumR.getNoCuenta()){
+                        if(archivo){
+
+                            transDato.escribirDato(alumL,escL);
+                            //Se elimino la repeticion de folderpath, la cadena
+                            //ya lo incluye
+                        }else{
+                            transDato.escribirDato(alumL,escR);
+                        }
+                        strL=checkL.readLine();
                     }else{
-                        transDato.escribirDato(alumL,this.folderPath+"/"+escR);
+                        if(archivo){
+                            transDato.escribirDato(alumR,escL);
+                        }else{
+                            transDato.escribirDato(alumR,escR);
+                        }
+                        strR=checkR.readLine();
+                    }
+
+                }
+                while(strR!=null&&!strR.isEmpty()){
+                    Alumno alumR;
+                    alumR = transDato.obtenerDato(strR); 
+                    if(archivo){
+                        transDato.escribirDato(alumR,escL);
+                    }else{
+                        transDato.escribirDato(alumR,escR);
+                    }
+                        strR=checkR.readLine();
+                }
+                while(strL!=null&&!strL.isEmpty()){
+                    Alumno alumL;
+                    alumL = transDato.obtenerDato(strL); 
+                    if(archivo){
+                        transDato.escribirDato(alumL,escL);
+                    }else{
+                        transDato.escribirDato(alumL,escR);
                     }
                     strL=checkL.readLine();
-                }else{
-                    if(archivo){
-                        transDato.escribirDato(alumR,this.folderPath+"/"+escL);
-                    }else{
-                        transDato.escribirDato(alumR,this.folderPath+"/"+escR);
-                    }
-                    strR=checkR.readLine();
                 }
-
+                if(archivo){
+                    transDato.addString(escL,"\n");
+                }else{
+                    transDato.addString(escR,"\n");
+                }
+                archivo=!archivo;
+                strR = checkR.readLine();
+                strL = checkL.readLine();
             }
             while(strR!=null&&!strR.isEmpty()){
-                Alumno alumR;
-                alumR = transDato.obtenerDato(strR); 
+                Alumno ultimoBloque = transDato.obtenerDato(strR);
                 if(archivo){
-                    transDato.escribirDato(alumR,this.folderPath+"/"+escL);
+                    transDato.escribirDato(ultimoBloque,escL);
                 }else{
-                    transDato.escribirDato(alumR,this.folderPath+"/"+escR);
+                    transDato.escribirDato(ultimoBloque,escR);
                 }
-                    strR=checkR.readLine();
+                strR=checkR.readLine();
             }
+     
             while(strL!=null&&!strL.isEmpty()){
-                Alumno alumL;
-                alumL = transDato.obtenerDato(strL); 
+                System.out.println(strL);
+                Alumno ultimoBloque = transDato.obtenerDato(strL);
                 if(archivo){
-                    transDato.escribirDato(alumL,this.folderPath+"/"+escL);
+                    transDato.escribirDato(ultimoBloque,escL);
                 }else{
-                    transDato.escribirDato(alumL,this.folderPath+"/"+escR);
+                    transDato.escribirDato(ultimoBloque,escR);
                 }
-                strL=checkL.readLine();
+                    strL=checkL.readLine();
             }
-            if(archivo){
-                transDato.addString(this.folderPath+"/"+escL,"\n");
+            
+             if(archivo){
+                transDato.addString(escL,"\n");
             }else{
-                transDato.addString(this.folderPath+"/"+escR,"\n");
-            }
-            archivo=!archivo;
-            strR = checkR.readLine();
-            strL = checkL.readLine();
-        }
-        while(strR!=null&&!strR.isEmpty()){
-            Alumno ultimoBloque = transDato.obtenerDato(strR);
-            if(archivo){
-                transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escL);
-            }else{
-                transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
-            }
-            strR=checkR.readLine();
-        }
-        while(strL!=null&&!strL.isEmpty()){
-            Alumno ultimoBloque = transDato.obtenerDato(strL);
-            if(archivo){
-                transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escL);
-            }else{
-                transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
-            }
-                strL=checkL.readLine();
-        }
-        rL.close();
-        rR.close();
-        checkL.close();
-        checkR.close();
-        String nextWriteR ="F1"+"I"+iteration+".txt"; 
-        String nextWriteL ="F2"+"I"+iteration+".txt";
-        iteration++;
+                transDato.addString(escR,"\n");
+                }
+            rL.close();
+            rR.close();
+            checkL.close();
+            checkR.close();
+            iteration++;
 
-        //mergeNum(this.folderPath+"/"+escR,this.folderPath+"/"+escL, nextWriteR, nextWriteL, iteration);        
-        
+            mergeNum(escR,escL,leerR, leerL, iteration);        
+        }
         rL.close();
         rR.close();
         checkL.close();
         checkR.close();
     }
     public void mergeApe(String leerR, String leerL, String escR, String escL, int iteration) throws IOException{        
-        FilesDirect admiFilesDirect = new FilesDirect();
+
         File r = new File(leerR);
-        File l = new File(leerL);  
+        File l = new File(leerL); 
         FileReader rR = new FileReader(r);
         FileReader rL = new FileReader(l);
         BufferedReader checkR = new BufferedReader(rR);
         BufferedReader checkL = new BufferedReader(rL);
         String strR = checkR.readLine();
-        String strL = checkL.readLine();
-        if(strR!=null&&strL!=null){
-            admiFilesDirect.crearArchivo(escR);
-            admiFilesDirect.crearArchivo(escL);
+        String strL = checkL.readLine();       
+             //No se crearán archivos ahora
+            
+        /*
+        Si strL, strR ,strWL o strWR son nulos, significa que se llegó al final
+        de su respectivo archivo.
+        
+        Si strL , strR, strWL o strWR son "@" Se llego al inicio de una
+             iteración
 
+        si strL, strR, strWL o strWR están vacías, se llegó al final de 
+        un bloque.
+        */     
+        int numeroArrobas;
+        if(iteration%2==0){
+            numeroArrobas = iteration/2;
+        }else{
+            numeroArrobas = (iteration+1)/2;
+        }
+        /*
+        Los siguentes while colocan al lector en la iteración correcta 
+        */
+        int countArrobas=1;
+        while(countArrobas<numeroArrobas){
+            strR = checkR.readLine();
+            if(strR.equals("@")){
+                countArrobas++;
+            }
+        }
+       countArrobas=1;
+        while(countArrobas<numeroArrobas){
+
+            strL = checkL.readLine();
+            if(strL.equals("@")){
+                countArrobas++;
+            }
+        }
+
+        //Lee la primera linea de la iteracion
+        strR = checkR.readLine();
+        strL = checkL.readLine();
+        if(!strR.isEmpty()&&!strL.isEmpty()){     
             Dato transDato = new Dato();
             boolean archivo = true;
+            //Añade el @indicando el incio de iteración
+            transDato.addString(escR,"@\n");
+            transDato.addString(escL,"@\n");
             while(strR!=null&&strL!=null){
-
-                while((strR!=null&&!strR.isEmpty())&&(strL!=null&&!strL.isEmpty())){ //Mientras no se llege al final del bloque o del archivo
+                /*
+                Mientras no se llege al final de del bloque o de la iteración
+                */
+                while((strR!=null&&!strR.isEmpty())&&(strL!=null&&!strL.isEmpty())){
                     Alumno alumR;
                     Alumno alumL;
                     alumR = transDato.obtenerDato(strR);
                     alumL = transDato.obtenerDato(strL);
 
+                    System.out.print(alumL.getApellido().toUpperCase()+" ");
+                    System.out.print(alumR.getApellido().toUpperCase()+" ");
+                    System.out.println(alumL.getApellido().toUpperCase().compareTo(alumR.getApellido().toUpperCase())<=0);
+                   
                     if(alumL.getApellido().toUpperCase().compareTo(alumR.getApellido().toUpperCase())<=0){
                         if(archivo){
-                            transDato.escribirDato(alumL,this.folderPath+"/"+escL);
+
+                            transDato.escribirDato(alumL,escL);
+                            //Se elimino la repeticion de folderpath, la cadena
+                            //ya lo incluye
                         }else{
-                            transDato.escribirDato(alumL,this.folderPath+"/"+escR);
+                            transDato.escribirDato(alumL,escR);
                         }
                         strL=checkL.readLine();
                     }else{
                         if(archivo){
-                            transDato.escribirDato(alumR,this.folderPath+"/"+escL);
+                            transDato.escribirDato(alumR,escL);
                         }else{
-                            transDato.escribirDato(alumR,this.folderPath+"/"+escR);
+                            transDato.escribirDato(alumR,escR);
                         }
                         strR=checkR.readLine();
                     }
-            
+
                 }
                 while(strR!=null&&!strR.isEmpty()){
                     Alumno alumR;
+                    System.out.println(strR);
                     alumR = transDato.obtenerDato(strR); 
                     if(archivo){
-                        transDato.escribirDato(alumR,this.folderPath+"/"+escL);
+                        transDato.escribirDato(alumR,escL);
                     }else{
-                        transDato.escribirDato(alumR,this.folderPath+"/"+escR);
+                        transDato.escribirDato(alumR,escR);
                     }
                         strR=checkR.readLine();
                 }
@@ -196,16 +275,16 @@ public class Merge {
                     Alumno alumL;
                     alumL = transDato.obtenerDato(strL); 
                     if(archivo){
-                        transDato.escribirDato(alumL,this.folderPath+"/"+escL);
+                        transDato.escribirDato(alumL,escL);
                     }else{
-                        transDato.escribirDato(alumL,this.folderPath+"/"+escR);
+                        transDato.escribirDato(alumL,escR);
                     }
                     strL=checkL.readLine();
                 }
                 if(archivo){
-                    transDato.addString(this.folderPath+"/"+escL,"\n");
+                    transDato.addString(escL,"\n");
                 }else{
-                    transDato.addString(this.folderPath+"/"+escR,"\n");
+                    transDato.addString(escR,"\n");
                 }
                 archivo=!archivo;
                 strR = checkR.readLine();
@@ -214,84 +293,141 @@ public class Merge {
             while(strR!=null&&!strR.isEmpty()){
                 Alumno ultimoBloque = transDato.obtenerDato(strR);
                 if(archivo){
-                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escL);
+                    transDato.escribirDato(ultimoBloque,escL);
                 }else{
-                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
+                    transDato.escribirDato(ultimoBloque,escR);
                 }
                 strR=checkR.readLine();
             }
+     
             while(strL!=null&&!strL.isEmpty()){
+                System.out.println(strL);
                 Alumno ultimoBloque = transDato.obtenerDato(strL);
                 if(archivo){
-                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escL);
+                    transDato.escribirDato(ultimoBloque,escL);
                 }else{
-                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
+                    transDato.escribirDato(ultimoBloque,escR);
                 }
                     strL=checkL.readLine();
             }
+            
+             if(archivo){
+                transDato.addString(escL,"\n");
+            }else{
+                transDato.addString(escR,"\n");
+                }
             rL.close();
             rR.close();
             checkL.close();
             checkR.close();
-            String nextWriteR ="F1"+"I"+iteration+".txt"; 
-            String nextWriteL ="F2"+"I"+iteration+".txt";
             iteration++;
 
-            mergeApe(this.folderPath+"/"+escR,this.folderPath+"/"+escL, nextWriteR, nextWriteL, iteration);        
+            mergeApe(escR,escL,leerR, leerL, iteration);        
         }
         rL.close();
         rR.close();
         checkL.close();
         checkR.close();
     }
-        public void mergeNom(String leerR, String leerL, String escR, String escL, int iteration) throws IOException{        
-        FilesDirect admiFilesDirect = new FilesDirect();
+    
+    public void mergeNom(String leerR, String leerL, String escR, String escL, int iteration) throws IOException{        
+
         File r = new File(leerR);
-        File l = new File(leerL);  
+        File l = new File(leerL); 
         FileReader rR = new FileReader(r);
         FileReader rL = new FileReader(l);
         BufferedReader checkR = new BufferedReader(rR);
         BufferedReader checkL = new BufferedReader(rL);
         String strR = checkR.readLine();
-        String strL = checkL.readLine();
-        if(strR!=null&&strL!=null){
-            admiFilesDirect.crearArchivo(escR);
-            admiFilesDirect.crearArchivo(escL);
+        String strL = checkL.readLine();       
+             //No se crearán archivos ahora
+            
+        /*
+        Si strL, strR ,strWL o strWR son nulos, significa que se llegó al final
+        de su respectivo archivo.
+        
+        Si strL , strR, strWL o strWR son "@" Se llego al inicio de una
+             iteración
 
+        si strL, strR, strWL o strWR están vacías, se llegó al final de 
+        un bloque.
+        */     
+        int numeroArrobas;
+        if(iteration%2==0){
+            numeroArrobas = iteration/2;
+        }else{
+            numeroArrobas = (iteration+1)/2;
+        }
+        /*
+        Los siguentes while colocan al lector en la iteración correcta 
+        */
+        int countArrobas=1;
+        while(countArrobas<numeroArrobas){
+            strR = checkR.readLine();
+            if(strR.equals("@")){
+                countArrobas++;
+            }
+        }
+       countArrobas=1;
+        while(countArrobas<numeroArrobas){
+
+            strL = checkL.readLine();
+            if(strL.equals("@")){
+                countArrobas++;
+            }
+        }
+
+        //Lee la primera linea de la iteracion
+        strR = checkR.readLine();
+        strL = checkL.readLine();
+        if(!strR.isEmpty()&&!strL.isEmpty()){     
             Dato transDato = new Dato();
             boolean archivo = true;
+            //Añade el @indicando el incio de iteración
+            transDato.addString(escR,"@\n");
+            transDato.addString(escL,"@\n");
             while(strR!=null&&strL!=null){
-                while((strR!=null&&!strR.isEmpty())&&(strL!=null&&!strL.isEmpty())){ //Mientras no se llege al final del bloque o del archivo
+                /*
+                Mientras no se llege al final de del bloque o de la iteración
+                */
+                while((strR!=null&&!strR.isEmpty())&&(strL!=null&&!strL.isEmpty())){
                     Alumno alumR;
                     Alumno alumL;
-             
                     alumR = transDato.obtenerDato(strR);
                     alumL = transDato.obtenerDato(strL);
 
+                    System.out.print(alumL.getApellido().toUpperCase()+" ");
+                    System.out.print(alumR.getApellido().toUpperCase()+" ");
+                    System.out.println(alumL.getApellido().toUpperCase().compareTo(alumR.getApellido().toUpperCase())<=0);
+                   
                     if(alumL.getNombre().toUpperCase().compareTo(alumR.getNombre().toUpperCase())<=0){
                         if(archivo){
-                            transDato.escribirDato(alumL,this.folderPath+"/"+escL);
+
+                            transDato.escribirDato(alumL,escL);
+                            //Se elimino la repeticion de folderpath, la cadena
+                            //ya lo incluye
                         }else{
-                            transDato.escribirDato(alumL,this.folderPath+"/"+escR);
+                            transDato.escribirDato(alumL,escR);
                         }
                         strL=checkL.readLine();
                     }else{
                         if(archivo){
-                            transDato.escribirDato(alumR,this.folderPath+"/"+escL);
+                            transDato.escribirDato(alumR,escL);
                         }else{
-                            transDato.escribirDato(alumR,this.folderPath+"/"+escR);
+                            transDato.escribirDato(alumR,escR);
                         }
                         strR=checkR.readLine();
                     }
-            
+
                 }
                 while(strR!=null&&!strR.isEmpty()){
                     Alumno alumR;
+                    System.out.println(strR);
                     alumR = transDato.obtenerDato(strR); 
                     if(archivo){
-                        transDato.escribirDato(alumR,this.folderPath+"/"+escL);
+                        transDato.escribirDato(alumR,escL);
                     }else{
-                        transDato.escribirDato(alumR,this.folderPath+"/"+escR);
+                        transDato.escribirDato(alumR,escR);
                     }
                         strR=checkR.readLine();
                 }
@@ -299,16 +435,16 @@ public class Merge {
                     Alumno alumL;
                     alumL = transDato.obtenerDato(strL); 
                     if(archivo){
-                        transDato.escribirDato(alumL,this.folderPath+"/"+escL);
+                        transDato.escribirDato(alumL,escL);
                     }else{
-                        transDato.escribirDato(alumL,this.folderPath+"/"+escR);
+                        transDato.escribirDato(alumL,escR);
                     }
                     strL=checkL.readLine();
                 }
                 if(archivo){
-                    transDato.addString(this.folderPath+"/"+escL,"\n");
+                    transDato.addString(escL,"\n");
                 }else{
-                    transDato.addString(this.folderPath+"/"+escR,"\n");
+                    transDato.addString(escR,"\n");
                 }
                 archivo=!archivo;
                 strR = checkR.readLine();
@@ -317,30 +453,36 @@ public class Merge {
             while(strR!=null&&!strR.isEmpty()){
                 Alumno ultimoBloque = transDato.obtenerDato(strR);
                 if(archivo){
-                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escL);
+                    transDato.escribirDato(ultimoBloque,escL);
                 }else{
-                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
+                    transDato.escribirDato(ultimoBloque,escR);
                 }
                 strR=checkR.readLine();
             }
+     
             while(strL!=null&&!strL.isEmpty()){
+                System.out.println(strL);
                 Alumno ultimoBloque = transDato.obtenerDato(strL);
                 if(archivo){
-                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escL);
+                    transDato.escribirDato(ultimoBloque,escL);
                 }else{
-                    transDato.escribirDato(ultimoBloque,this.folderPath+"/"+escR);
+                    transDato.escribirDato(ultimoBloque,escR);
                 }
                     strL=checkL.readLine();
             }
+            
+             if(archivo){
+                transDato.addString(escL,"\n");
+            }else{
+                transDato.addString(escR,"\n");
+                }
             rL.close();
             rR.close();
             checkL.close();
             checkR.close();
-            String nextWriteR ="F1"+"I"+iteration+".txt"; 
-            String nextWriteL ="F2"+"I"+iteration+".txt";
             iteration++;
-            
-            mergeNom(this.folderPath+"/"+escR,this.folderPath+"/"+escL, nextWriteR, nextWriteL, iteration);        
+
+            mergeNom(escR,escL,leerR, leerL, iteration);        
         }
         rL.close();
         rR.close();
