@@ -1,9 +1,7 @@
 package mezclaEquilibrada;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import dato.*;
 
@@ -14,156 +12,149 @@ import dato.*;
 public class MezclaCuenta extends MezclaEquilibrada{    
     
     @Override
-    public boolean mezclaE(String archivo) throws IOException {
-       boolean b = true;  
+    public boolean mezclaE(BufferedReader reader) throws IOException {                                
+        boolean b = true;  
+        boolean isSorted = true;
         String cadena;
         
         Alumno alumnoI;
         Alumno alumnoD;
         
-        Dato dato = new Dato(); 
-                  
-        File f1 = new File("f1.txt");
-        File f2 = new File("f2.txt");
+        Dato dato = new Dato();                     
         
-        //f1.delete();
-        //f2.delete();
-       
-        f1.createNewFile();
-        f2.createNewFile();
+        cadena=reader.readLine();       
+        if(cadena==null){            
+            isSorted = false;
+            return isSorted;
+        }
+        if(cadena.equals("#"))
+            cadena = reader.readLine();
+        if(cadena.isEmpty())
+            return isSorted;
         
-        File f = new File(archivo);
-        FileReader lector = new FileReader(f);
-        BufferedReader lectura = new BufferedReader(lector);                                                                
-                                        
-        cadena=lectura.readLine();       
         do{           
             alumnoI = dato.obtenerDato(cadena);
-            cadena = lectura.readLine();            
-            if(cadena!=null){
+            cadena = reader.readLine();            
+            if(cadena!=null&&!(cadena.equals("#"))){
                 alumnoD = dato.obtenerDato(cadena);
             } else {
-                alumnoD=alumnoI;
+                if(b==true){                                                                                                       
+                    dato.escribirDato2(alumnoI, "f1.txt");
+                    b=false;
+                } else{
+                    dato.escribirDato2(alumnoI, "f2.txt");                                                                    
+                    b=true;
+                }
+                break;
             }
             
             if(alumnoI.getNoCuenta()<=alumnoD.getNoCuenta()){
                 if(b==true){
-                    dato.escribirDato(alumnoI, f1.getName());
+                    dato.escribirDato(alumnoI, "f1.txt");
                 } else {
-                    dato.escribirDato(alumnoI, f2.getName()); 
+                    dato.escribirDato(alumnoI, "f2.txt"); 
+                    isSorted = false;
                 }                
                 
             } else {                
                 if(b==true){                                                                                                       
-                    dato.escribirDato2(alumnoI, f1.getName());
+                    dato.escribirDato2(alumnoI, "f1.txt");
                     b=false;
                 } else{
-                    dato.escribirDato2(alumnoI, f2.getName());                                                                    
+                    dato.escribirDato2(alumnoI, "f2.txt");    
+                    isSorted = false;
                     b=true;
                 }
             }    
         }while(cadena!=null);     
         
-        dato.addHash(f1.getName());
-        dato.addHash(f2.getName());
-        
-        lectura.close();
-        
-        if(f2.length()==0) return true;
+        dato.addHash("f1.txt");
+        dato.addHash("f2.txt");                        
                            
-        return false;
+        return isSorted;
     }
 
     @Override
-    public void mezclaD(boolean b) throws FileNotFoundException, IOException {
-         if(b==true) return;
+    public void mezclaD(boolean b,BufferedReader lectura_f1, BufferedReader lectura_f2) throws FileNotFoundException, IOException {
+        if(b==true) return;
         String cadenaf1;
         String cadenaf2;
   
         Alumno alumnof1;
         Alumno alumnof2;
-        Dato dato = new Dato();  
         
-        File f0 = new File("f0.txt");          
-        //f0.delete();
-        f0.createNewFile();
-                        
-        File f1 = new File("f1.txt");
-        File f2 = new File("f2.txt");
+        Dato dato = new Dato();                                           
 
-        FileReader fr_f1 = new FileReader(f1);
-        BufferedReader lectura_f1 = new BufferedReader(fr_f1);  
-
-        FileReader fr_f2 = new FileReader(f2);
-        BufferedReader lectura_f2 = new BufferedReader(fr_f2);
-
-
-        cadenaf1=lectura_f1.readLine();        
-        if(cadenaf1==null){
-            lectura_f1.close();
-            lectura_f2.close();
+        cadenaf1=lectura_f1.readLine();   
+        cadenaf2=lectura_f2.readLine(); 
+        if(cadenaf1==null||cadenaf2==null){
             return;
         }
-        alumnof1 = dato.obtenerDato(cadenaf1);
-        cadenaf2=lectura_f2.readLine();
-        if(cadenaf2==null){
-            lectura_f1.close();
-            lectura_f2.close();
-            return;
+        
+        if(cadenaf2.equals("#")){
+            while(!(cadenaf1.isEmpty())){
+                alumnof1 = dato.obtenerDato(cadenaf1);
+                dato.escribirDato(alumnof1, "f0.txt");
+                cadenaf1=lectura_f1.readLine();
+            }
+           return; 
         }
-        alumnof2 = dato.obtenerDato(cadenaf2);               
+        
+        alumnof1 = dato.obtenerDato(cadenaf1);   
+        alumnof2 = dato.obtenerDato(cadenaf2);                                         
         
         do{
            if(!(cadenaf1.isEmpty())&&!(cadenaf2.isEmpty())){
-                if(alumnof1.getNoCuenta()<alumnof2.getNoCuenta()){
-                    dato.escribirDato(alumnof1, f0.getName());
+                if(alumnof1.getNoCuenta()<=alumnof2.getNoCuenta()){
+                    dato.escribirDato(alumnof1, "f0.txt");
                     cadenaf1=lectura_f1.readLine();   
-                    if(cadenaf1!=null&&!(cadenaf1.isEmpty()))
+                    if(!(cadenaf1.isEmpty())&&!(cadenaf1.equals("#")))
                         alumnof1 = dato.obtenerDato(cadenaf1);                                  
                 }else{
-                    dato.escribirDato(alumnof2,f0.getName());
+                    dato.escribirDato(alumnof2,"f0.txt");
                     cadenaf2=lectura_f2.readLine();   
-                    if(cadenaf2!=null&&!(cadenaf2.isEmpty()))
+                    if(!(cadenaf2.isEmpty())&&!(cadenaf2.equals("#")))
                         alumnof2 = dato.obtenerDato(cadenaf2);                                 
                 }
             } else{  //Lo deja al inicio del nuevo bloque              
-                while(cadenaf1!=null&&cadenaf1.isEmpty()){                        
+                while(cadenaf1.isEmpty()&&!(cadenaf1.equals("#"))){                        
                    cadenaf1=lectura_f1.readLine();   
-                   if(cadenaf1!=null&&!(cadenaf1.isEmpty()))
+                   if(!(cadenaf1.isEmpty())&&!(cadenaf1.equals("#")))
                         alumnof1 = dato.obtenerDato(cadenaf1);
                 }                     
-                while(cadenaf2!=null&&cadenaf2.isEmpty()){
+                while(cadenaf2.isEmpty()&&!(cadenaf2.equals("#"))){
                    cadenaf2=lectura_f2.readLine();   
-                   if(cadenaf2!=null&&!(cadenaf2.isEmpty()))
+                   if(!(cadenaf2.isEmpty())&&!(cadenaf2.equals("#")))
                         alumnof2 = dato.obtenerDato(cadenaf2);
                 }
-            }
+                if(cadenaf1.equals("#")&&cadenaf2.equals("#")) break;
+            }           
             
-            //Escribir los elementos sobrantes
-            if(cadenaf2==null||cadenaf2.isEmpty()){                              
+            //Escribir los elementos sobrantes                       
+            if(cadenaf2.equals("#")||cadenaf2.isEmpty()){ 
                 do{
-                    dato.escribirDato(alumnof1, f0.getName());
+                    dato.escribirDato(alumnof1, "f0.txt");
                     cadenaf1=lectura_f1.readLine();
-                    if(cadenaf1!=null&&!(cadenaf1.isEmpty())){
+                    if(cadenaf1!=null&&!(cadenaf1.isEmpty())&&!(cadenaf1.equals("#"))){
                         alumnof1 = dato.obtenerDato(cadenaf1);
                     }  
-                } while(cadenaf1!=null&&!(cadenaf1.isEmpty()));                    
-            }else{
-                if(cadenaf1.isEmpty()||cadenaf1==null){
+                } while(cadenaf1!=null&&!(cadenaf1.isEmpty())&&!(cadenaf1.equals("#")));  
+            } else {
+                if(cadenaf1.equals("#")||cadenaf1.isEmpty()){
                     do{
-                       dato.escribirDato(alumnof2, f0.getName());
+                       dato.escribirDato(alumnof2, "f0.txt");
                        cadenaf2=lectura_f2.readLine();
-                       if(cadenaf2!=null&&!(cadenaf2.isEmpty())){
+                       if(cadenaf2!=null&&!(cadenaf2.isEmpty())&&!(cadenaf2.equals("#"))){
                          alumnof2 = dato.obtenerDato(cadenaf2);
                         }  
-                    } while(cadenaf2!=null&&!(cadenaf2.isEmpty()));                  
+                    } while(cadenaf2!=null&&!(cadenaf2.isEmpty())&&!(cadenaf2.equals("#"))); 
                 }
-            }                               
-        }while(cadenaf1!=null&&cadenaf2!=null);   
+            } 
+        }while(cadenaf1!=null&&cadenaf2!=null&&!(cadenaf1.equals("#"))&&!(cadenaf2.equals("#")));   
         
-        dato.addHash(f0.getName());
+        if(cadenaf2.isEmpty()) cadenaf2=lectura_f2.readLine();
+        if(cadenaf1.isEmpty()) cadenaf1=lectura_f1.readLine();
         
-        lectura_f1.close();
-        lectura_f2.close();
+        dato.addHash("f0.txt");                
     }   
 }
