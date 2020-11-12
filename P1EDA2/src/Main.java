@@ -60,8 +60,7 @@ public class Main {
                     
                     case 3:
                         MezclaEquilibrada mc = new MezclaCuenta();
-                        mc.mezcla(nombre);
-                        
+                        mc.mezcla(nombre);                        
                     default:
                         break;
                 }
