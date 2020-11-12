@@ -11,258 +11,156 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.ArrayList;
 import dato.*;
+import java.io.RandomAccessFile;
 
 /**
  *
  * @author Sofía Elizabeth Cabello Díaz
  */
 public class RadixSort {
+        String folderpath;    
         
-        
-        /*public int getMax(ArrayList <Alumno> list){
-            int max = 0;
-            for (Alumno al : list) {
-                if(al.getNoCuenta() > max)
-                    max = al.getNoCuenta();
+        public int getMax(Alumno alumno, int max){
+            int n = alumno.getNoCuenta();
+            if(alumno.getNoCuenta() > max){
+                max = alumno.getNoCuenta();
             }
             return max;
-        }*/
+        }
+        
         
         public void RadixSort(String archivo) throws IOException{
+            RadixFiles rF = new RadixFiles(archivo);
+            folderpath = rF.rutaFolder();
+            rF.crearDirectorio();
             
-            int i, max, n;
-
-            File f0 = new File("f0.txt");
-            File f1 = new File("f1.txt");
-            File f2 = new File("f2.txt");
-            File f3 = new File("f3.txt");
-            File f4 = new File("f4.txt");
-            File f5 = new File("f5.txt");
-            File f6 = new File("f6.txt");
-            File f7 = new File("f7.txt");
-            File f8 = new File("f8.txt");
-            File f9 = new File("f9.txt");
-            File list = new File("list.txt");
-            File dO = new File("datosordenados.txt");
+            int i, max = 0, n= 0;
             
-            f0.delete();
-            f1.delete();
-            f2.delete();
-            f3.delete();
-            f4.delete();
-            f5.delete();
-            f6.delete();
-            f7.delete();
-            f8.delete();
-            f9.delete();
-            list.delete();
-            dO.delete();
+            BufferedReader br_f0 = files("f0",archivo);
+            BufferedReader br_f1 = files("f1",archivo);
+            BufferedReader br_f2 = files("f2",archivo);
+            BufferedReader br_f3 = files("f3",archivo);
+            BufferedReader br_f4 = files("f4",archivo);
+            BufferedReader br_f5 = files("f5",archivo);
+            BufferedReader br_f6 = files("f6",archivo);
+            BufferedReader br_f7 = files("f7",archivo);
+            BufferedReader br_f8 = files("f8",archivo);
+            BufferedReader br_f9 = files("f9",archivo);
+            BufferedReader br_list = files("list",archivo);
             
-            f0.createNewFile();
-            f1.createNewFile();
-            f2.createNewFile();
-            f3.createNewFile();
-            f4.createNewFile();
-            f5.createNewFile();
-            f6.createNewFile();
-            f7.createNewFile();
-            f8.createNewFile();
-            f9.createNewFile();
-            list.createNewFile();
-            dO.createNewFile();
-            
-            FileReader reader_f0 = new FileReader(f0);
-            BufferedReader read_f0 = new BufferedReader(reader_f0);
-            
-            FileReader reader_f1 = new FileReader(f1);
-            BufferedReader read_f1 = new BufferedReader(reader_f1);
-            
-            FileReader reader_f2 = new FileReader(f2);
-            BufferedReader read_f2 = new BufferedReader(reader_f2);
-            
-            FileReader reader_f3 = new FileReader(f3);
-            BufferedReader read_f3 = new BufferedReader(reader_f3);
-            
-            FileReader reader_f4 = new FileReader(f4);
-            BufferedReader read_f4 = new BufferedReader(reader_f4);
-            
-            FileReader reader_f5 = new FileReader(f5);
-            BufferedReader read_f5 = new BufferedReader(reader_f5);
-            
-            FileReader reader_f6 = new FileReader(f6);
-            BufferedReader read_f6 = new BufferedReader(reader_f6);
-            
-            FileReader reader_f7 = new FileReader(f7);
-            BufferedReader read_f7 = new BufferedReader(reader_f7);
-            
-            FileReader reader_f8 = new FileReader(f8);
-            BufferedReader read_f8 = new BufferedReader(reader_f8);
-            
-            FileReader reader_f9 = new FileReader(f9);
-            BufferedReader read_f9 = new BufferedReader(reader_f9);
-            
-            FileReader reader_list = new FileReader(list);
-            BufferedReader read_list = new BufferedReader(reader_list);
-           
             Dato dato = new Dato();
-            ArrayList<Alumno> lista = new ArrayList<>();
-            lista = dato.leerDato(0,100,archivo);
-            //max = getMax(lista);
-            n = lista.size();
-            //n = 100;
             Alumno alumno;
             String string;
-            dato.escribirDatos(lista, "list.txt");
-
-
-            for (int powerOf10 = 1; powerOf10 <= 300000; powerOf10 = powerOf10 * 10) {
-
+            
+            File file = new File(archivo);
+            FileReader reader_file = new FileReader(file);
+            BufferedReader br = new BufferedReader(reader_file);
+            for(i = 0; i<100;i++){
+                string = br.readLine();
+                if(null != string){
+                  alumno = dato.obtenerDato(string);
+                  max = getMax(alumno, max);
+                  dato.escribirDato(alumno, folderpath+"/list.txt");  
+                  n++;
+                }
+            }
+            br.close();
+      
+            for (int powerOf10 = 1; powerOf10 <= max; powerOf10 = powerOf10 * 10) {
+                
+                printIte(folderpath+"/list.txt",powerOf10);
                 for(i=0; i<10;i++){
                     String a = String.valueOf("f"+i+".txt");
-                    printIte(a,powerOf10);
+                    printIte(folderpath+"/f"+i+".txt",powerOf10);
                 }
                 
-                for (i = 0; i < lista.size(); i++) {
-                    string = read_list.readLine();
+                for (i = 0; i < n; i++) {
+                    string = br_list.readLine();
                     if(null != string){
                         alumno = dato.obtenerDato(string);
                         int digit = (alumno.getNoCuenta()/powerOf10)%10;
-                        dato.escribirDato(alumno, "f"+digit+".txt");
+                        dato.escribirDato(alumno,folderpath+"/f"+digit+".txt");
                     }
                 }  
-
-                    printIte("list.txt",powerOf10);
-                    
-                    read_f0.readLine();
-                    read_f0.readLine();
-                    for(i = 0; i<n;i++){
-                        string = read_f0.readLine();
-                        if(null != string){
-                        alumno = dato.obtenerDato(string);
-                        dato.escribirDato(alumno, "list.txt");
-                        }
-                    }
-                    
-                    read_f1.readLine();
-                    read_f1.readLine();
-                    for(i = 0; i<n;i++){
-                        string = read_f1.readLine();
-                        if(null != string){
-                        alumno = dato.obtenerDato(string);
-                        dato.escribirDato(alumno, "list.txt");
-                        }
-                    }
-                    
-                    read_f2.readLine();
-                    read_f2.readLine();
-                    for(i = 0; i<n;i++){
-                        string = read_f2.readLine();
-                        if(null != string){
-                        alumno = dato.obtenerDato(string);
-                        dato.escribirDato(alumno, "list.txt");
-                        }
-                    }
-                    
-                    read_f3.readLine();
-                    read_f3.readLine();
-                    for(i = 0; i<n;i++){
-                        string = read_f3.readLine();
-                        if(null != string){
-                        alumno = dato.obtenerDato(string);
-                        dato.escribirDato(alumno, "list.txt");
-                        }
-                    }
-                    
-                    read_f4.readLine();
-                    read_f4.readLine();
-                    for(i = 0; i<n;i++){
-                        string = read_f4.readLine();
-                        if(null != string){
-                        alumno = dato.obtenerDato(string);
-                        dato.escribirDato(alumno, "list.txt");
-                        }
-                    }
-                    
-                    read_f5.readLine();
-                    read_f5.readLine();
-                    for(i = 0; i<n;i++){
-                        string = read_f5.readLine();
-                        if(null != string){
-                        alumno = dato.obtenerDato(string);
-                        dato.escribirDato(alumno, "list.txt");
-                        }
-                    }
-                    
-                    read_f6.readLine();
-                    read_f6.readLine();
-                    for(i = 0; i<n;i++){
-                        string = read_f6.readLine();
-                        if(null != string){
-                        alumno = dato.obtenerDato(string);
-                        dato.escribirDato(alumno, "list.txt");
-                        }
-                    }
-                    
-                    read_f7.readLine();
-                    read_f7.readLine();
-                    for(i = 0; i<n;i++){
-                        string = read_f7.readLine();
-                        if(null != string){
-                        alumno = dato.obtenerDato(string);
-                        dato.escribirDato(alumno, "list.txt");
-                        }
-                    }
-                    
-                    read_f8.readLine();
-                    read_f8.readLine();
-                    for(i = 0; i<n;i++){
-                        string = read_f8.readLine();
-                        if(null != string){
-                        alumno = dato.obtenerDato(string);
-                        dato.escribirDato(alumno, "list.txt");
-                        }
-                    }
-                    
-                    read_f9.readLine();
-                    read_f9.readLine();
-                    for(i = 0; i<n;i++){
-                        string = read_f9.readLine();
-                        if(null != string){
-                        alumno = dato.obtenerDato(string);
-                        dato.escribirDato(alumno, "list.txt");
-                        }
-                    }
-                read_list.readLine();
-                read_list.readLine();
+                
+                readWrite(n,br_f0);
+                readWrite(n,br_f1);
+                readWrite(n,br_f2);
+                readWrite(n,br_f3);
+                readWrite(n,br_f4);
+                readWrite(n,br_f5);
+                readWrite(n,br_f6);
+                readWrite(n,br_f7);
+                readWrite(n,br_f8);
+                readWrite(n,br_f9);
+                
+                br_list.readLine();
+                br_list.readLine();
             } 
+            
+            RandomAccessFile rFile = new  RandomAccessFile(archivo,"rw");
+            rFile.setLength(0);
             for(i = 0; i<n;i++){
-                string = read_list.readLine();
+                string = br_list.readLine();
                 if(null != string){
                     alumno = dato.obtenerDato(string);
-                    dato.escribirDato(alumno, "datosordenados.txt");
+                    dato.escribirDato(alumno, archivo);
                 }
             }
-            read_list.close();
-            read_f1.close();
-            read_f2.close();
-            read_f3.close();
-            read_f4.close();
-            read_f5.close();
-            read_f6.close();
-            read_f7.close();
-            read_f8.close();
-            read_f9.close();
-            read_f0.close();
+            
+            System.out.println("Información de iteraciones: "+folderpath);
+            System.out.println("\n***   Archivo ordenado   ***");
+            
+            br_list.close();
+            br_f1.close();
+            br_f2.close();
+            br_f3.close();
+            br_f4.close();
+            br_f5.close();
+            br_f6.close();
+            br_f7.close();
+            br_f8.close();
+            br_f9.close();
+            br_f0.close();
         }
         
+
         public void printIte(String archivoD, int ite) throws IOException{
             File archivo = new File(archivoD);     
             try (FileWriter escribir = new FileWriter(archivo,true)) {
             escribir.write("\n   *** ITERACION DE "+ite+"'s   ***   \n");
             }
         }
+        
+        public BufferedReader files(String filename,String archivo) throws IOException{
+            RadixFiles rF = new RadixFiles(archivo);
+            folderpath = rF.rutaFolder();
+            rF.crearDirectorio();
+            File file = rF.crearArchivo(filename);
+            FileReader reader_file = new FileReader(file);
+            BufferedReader read_file = new BufferedReader(reader_file);
+            return read_file;
+        }
+        
+        public void readWrite(int n, BufferedReader read_file) throws IOException{
+            Dato dato = new Dato();
+            read_file.readLine();
+            read_file.readLine();
+            
+            int k = 0;
+            for(int i = 0; i<n;i++){
+                String string = read_file.readLine();
+                if(null != string && !string.isBlank()){
+                    Alumno alumno = dato.obtenerDato(string);
+                    dato.escribirDato(alumno, folderpath+"/list.txt");
+                    k++;
+                }
+                else{
+                    return;
+                }
+            }
+        }  
     }
     
+
