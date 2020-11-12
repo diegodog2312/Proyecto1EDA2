@@ -10,7 +10,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileWriter; //IO Dato y Alumno
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -45,8 +45,8 @@ public class Dato {
         File archivo = new File(archivoD);     
         try (FileWriter escribir = new FileWriter(archivo)) {
             for(int i=0; i<alumnos.size(); i++){
-                escribir.write(alumnos.get(i).getNombre().concat(",")
-                        .concat(alumnos.get(i).getApellido().concat(",")
+                escribir.write(alumnos.get(i).getNombre().concat(", ")
+                        .concat(alumnos.get(i).getApellido().concat(", ")
                                 .concat(String.valueOf(alumnos.get(i).getNoCuenta())).concat("\n")));                       
             }
             escribir.flush();            
@@ -57,8 +57,8 @@ public class Dato {
         File archivo = new File(archivoD);     
         try (FileWriter escribir = new FileWriter(archivo,true)) { //Agregué true
             for(int i=0; i<alumnos.size(); i++){
-                escribir.write(alumnos.get(i).getNombre().concat(",")
-                        .concat(alumnos.get(i).getApellido().concat(",")
+                escribir.write(alumnos.get(i).getNombre().concat(", ")
+                        .concat(alumnos.get(i).getApellido().concat(", ")
                                 .concat(String.valueOf(alumnos.get(i).getNoCuenta())).concat("\n")));                       
             }
             escribir.write("\n");  
@@ -69,7 +69,7 @@ public class Dato {
 
 
     public Alumno obtenerDato(String cadena){
-        String datos[] = cadena.split(",");
+        String datos[] = cadena.split(", ");
         Alumno alumno = new Alumno(datos[0], datos[1], Integer.valueOf(datos[2]));
         return alumno;
     }
@@ -81,12 +81,21 @@ public class Dato {
         }
 
     }
+    
+    public void addHash(String archivoD)throws IOException{
+        File archivo = new File(archivoD);     
+        try(FileWriter escribir = new FileWriter(archivo,true)){       
+            escribir.write("#\n");
+            
+        }
+
+    }
 
     public void escribirDato(Alumno alumno, String archivoD) throws IOException{
         File archivo = new File(archivoD);     
         try(FileWriter escribir = new FileWriter(archivo,true)){       
-            escribir.write(alumno.getNombre().concat(",")
-                        .concat(alumno.getApellido().concat(",")
+            escribir.write(alumno.getNombre().concat(", ")
+                        .concat(alumno.getApellido().concat(", ")
                                 .concat(String.valueOf(alumno.getNoCuenta())).concat("\n")));
             escribir.flush();
         }
@@ -96,8 +105,8 @@ public class Dato {
     public void escribirDato2(Alumno alumno, String archivoD) throws IOException{
         File archivo = new File(archivoD);     
         try(FileWriter escribir = new FileWriter(archivo,true)){       
-            escribir.write(alumno.getNombre().concat(",")
-                        .concat(alumno.getApellido().concat(",")
+            escribir.write(alumno.getNombre().concat(", ")
+                        .concat(alumno.getApellido().concat(", ")
                                 .concat(String.valueOf(alumno.getNoCuenta())).concat("\n")));    
             escribir.write("\n");
         }
