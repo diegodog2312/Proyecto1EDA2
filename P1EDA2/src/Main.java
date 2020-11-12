@@ -76,15 +76,15 @@ public class Main {
                 int num = Integer.valueOf(sc.nextLine());
                 switch(num){
                     case 1:
-                        //prueba.sortNom(nombre);
+                       prueba.sortNom(nombre);
                     break;
                     
                     case 2:
-                        //prueba.sortApe(nombre);
+                        prueba.sortApe(nombre);
                     break;
                     
                     case 3:                        
-                        //prueba.sortNum(nombre);
+                        prueba.sortNum(nombre);
                     default:
                         break;
                 } 
