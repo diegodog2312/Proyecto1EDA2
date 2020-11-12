@@ -6,13 +6,25 @@ import java.io.IOException;
 import dato.*;
 
 /**
- *
- * @author diegoignacionunezhernandez
+ * Esta clase se encarga de ordenar las claves del numero de cuenta de 
+ * un alumno en un archivo de texto.
+ * @author Diego Ignacio Nunez Hernandez
+ * @version 1.0 
  */
 public class MezclaApellido extends MezclaEquilibrada{
-
+    /**
+     * Sobreescritura de mezclaE para ordenar claves de cadenas de texto de los apellidos.
+     * Este método se encarga de la primera parte del algoritmo de Mezcla Equilbrada, 
+     * el cual consiste en realizar particiones tomando secuencias ordenadas de
+     * máxima longitud.
+     * @param reader Buffer del archivo a particionar.
+     * @param carpetaPath String con la direccion de la carpeta donde se encuentran
+     * los archivos necesarios para ordenar.
+     * @return Booleano que indica si el archivo está ordenado.
+     * @throws IOException Excepción.
+     */
     @Override
-    public boolean mezclaE(BufferedReader reader) throws IOException {
+    public boolean mezclaE(BufferedReader reader, String carpetaPath) throws IOException {
         boolean b = true;  
         boolean isSorted = true;
         String cadena;        
@@ -39,10 +51,10 @@ public class MezclaApellido extends MezclaEquilibrada{
                 alumnoD = dato.obtenerDato(cadena);
             } else {
                 if(b==true){                                                                                                       
-                    dato.escribirDato2(alumnoI, "f1.txt");
+                    dato.escribirDato2(alumnoI, carpetaPath+"/f1.txt");
                     b=false;
                 } else{
-                    dato.escribirDato2(alumnoI, "f2.txt");                                                                    
+                    dato.escribirDato2(alumnoI, carpetaPath+"/f2.txt");                                                                    
                     b=true;
                 }
                 break;
@@ -50,32 +62,43 @@ public class MezclaApellido extends MezclaEquilibrada{
             
             if(alumnoI.getApellido().compareTo(alumnoD.getApellido())<=0){
                 if(b==true){
-                    dato.escribirDato(alumnoI, "f1.txt");
+                    dato.escribirDato(alumnoI, carpetaPath+"/f1.txt");
                 } else {
-                    dato.escribirDato(alumnoI, "f2.txt"); 
+                    dato.escribirDato(alumnoI, carpetaPath+"/f2.txt"); 
                     isSorted = false;
                 }                
                 
             } else {                
                 if(b==true){                                                                                                       
-                    dato.escribirDato2(alumnoI, "f1.txt");
+                    dato.escribirDato2(alumnoI, carpetaPath+"/f1.txt");
                     b=false;
                 } else{
-                    dato.escribirDato2(alumnoI, "f2.txt");
+                    dato.escribirDato2(alumnoI, carpetaPath+"/f2.txt");
                     isSorted = false;
                     b=true;
                 }
             }    
         }while(cadena!=null);                           
         
-        dato.addHash("f1.txt");
-        dato.addHash("f2.txt"); 
+        dato.addHash(carpetaPath+"/f1.txt");
+        dato.addHash(carpetaPath+"/f2.txt"); 
                          
         return isSorted;
     }
-
+    /**
+     * Sobreescritura de mezclaD para ordenar claves de cadenas de texto de los apellidos.
+     * Este método se encarga de mezclar las particiones contenidas en dos archivos
+     * auxiliares para producir secuencias ordenadas escritas en otro archivo.
+     * @param b Booleano que indica si el archivo está ordenado.
+     * @param lectura_f1 Buffer del primer archivo auxiliar.
+     * @param lectura_f2 Buffer del segundo archivo auxiliar.
+     * @param carpetaPath String con la direccion de la carpeta donde se encuentran
+     * los archivos necesarios para ordenar.
+     * @throws FileNotFoundException Excepción.
+     * @throws IOException Excepción.
+     */
     @Override
-    public void mezclaD(boolean b,BufferedReader lectura_f1, BufferedReader lectura_f2) throws FileNotFoundException, IOException {
+    public void mezclaD(boolean b,BufferedReader lectura_f1, BufferedReader lectura_f2, String carpetaPath) throws FileNotFoundException, IOException {
         if(b==true) return;
         String cadenaf1;
         String cadenaf2;
@@ -94,7 +117,7 @@ public class MezclaApellido extends MezclaEquilibrada{
         if(cadenaf2.equals("#")){
             while(!(cadenaf1.isEmpty())){
                 alumnof1 = dato.obtenerDato(cadenaf1);
-                dato.escribirDato(alumnof1, "f0.txt");
+                dato.escribirDato(alumnof1, carpetaPath+"/f0.txt");
                 cadenaf1=lectura_f1.readLine();
             }
            return; 
@@ -106,12 +129,12 @@ public class MezclaApellido extends MezclaEquilibrada{
         do{
            if(!(cadenaf1.isEmpty())&&!(cadenaf2.isEmpty())){
                 if(alumnof1.getApellido().compareTo(alumnof2.getApellido())<=0){
-                    dato.escribirDato(alumnof1, "f0.txt");
+                    dato.escribirDato(alumnof1, carpetaPath+"/f0.txt");
                     cadenaf1=lectura_f1.readLine();   
                     if(!(cadenaf1.isEmpty())&&!(cadenaf1.equals("#")))
                         alumnof1 = dato.obtenerDato(cadenaf1);                                  
                 }else{
-                    dato.escribirDato(alumnof2,"f0.txt");
+                    dato.escribirDato(alumnof2,carpetaPath+"/f0.txt");
                     cadenaf2=lectura_f2.readLine();   
                     if(!(cadenaf2.isEmpty())&&!(cadenaf2.equals("#")))
                         alumnof2 = dato.obtenerDato(cadenaf2);                                 
@@ -133,7 +156,7 @@ public class MezclaApellido extends MezclaEquilibrada{
             //Escribir los elementos sobrantes
             if(cadenaf2.equals("#")||cadenaf2.isEmpty()){                              
                 do{
-                    dato.escribirDato(alumnof1, "f0.txt");
+                    dato.escribirDato(alumnof1, carpetaPath+"/f0.txt");
                     cadenaf1=lectura_f1.readLine();
                     if(cadenaf1!=null&&!(cadenaf1.isEmpty())&&!(cadenaf1.equals("#"))){
                         alumnof1 = dato.obtenerDato(cadenaf1);
@@ -142,7 +165,7 @@ public class MezclaApellido extends MezclaEquilibrada{
             } else {
                 if(cadenaf1.equals("#")||cadenaf1.isEmpty()){
                     do{
-                       dato.escribirDato(alumnof2, "f0.txt");
+                       dato.escribirDato(alumnof2, carpetaPath+"/f0.txt");
                        cadenaf2=lectura_f2.readLine();
                        if(cadenaf2!=null&&!(cadenaf2.isEmpty())&&!(cadenaf2.equals("#"))){
                          alumnof2 = dato.obtenerDato(cadenaf2);
@@ -155,6 +178,6 @@ public class MezclaApellido extends MezclaEquilibrada{
         if(cadenaf2.isEmpty()) cadenaf2=lectura_f2.readLine();
         if(cadenaf1.isEmpty()) cadenaf1=lectura_f1.readLine();
         
-        dato.addHash("f0.txt");                
+        dato.addHash(carpetaPath+"/f0.txt");                
     }   
 }

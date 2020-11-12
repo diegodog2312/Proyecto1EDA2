@@ -19,7 +19,7 @@ import java.io.FileReader;
  */
 public class Main {
     public static void main(String[] args) throws IOException{                
-       MezclaEquilibrada mc = new MezclaApellido();
+       MezclaEquilibrada mc = new MezclaCuenta();
        mc.mezcla("datos.txt");                           
         
 //        File f = new File("datos.txt");
