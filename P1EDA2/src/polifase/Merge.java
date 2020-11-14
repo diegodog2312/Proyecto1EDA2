@@ -23,6 +23,7 @@ public class Merge {
         BufferedReader checkL = new BufferedReader(rL);
         String strR = checkR.readLine();
         String strL = checkL.readLine();
+        
 
         
              //No se crearán archivos ahora
@@ -65,7 +66,23 @@ public class Merge {
         //Lee la primera linea de la iteracion
         strR = checkR.readLine();
         strL = checkL.readLine();
-        System.out.println("strR: "+strR+" strL: "+strL);
+        
+        if(strR.isEmpty()){
+            System.out.println("Los datos ordenados están en "+leerL);
+            System.out.println(" ");
+            System.out.println("Los archivos están en: ");
+            System.out.println(folderPath);
+        }
+        if(strL.isEmpty()){
+            System.out.println("Los datos ordenados están en "+leerR);
+            System.out.println(" ");
+            System.out.println("Los archivos están en: ");
+            System.out.println(folderPath);
+        }
+        
+        
+        
+        
         if(!strR.isEmpty()&&!strL.isEmpty()){     
             Dato transDato = new Dato();
             boolean archivo = true;
@@ -142,7 +159,7 @@ public class Merge {
             }
      
             while(strL!=null&&!strL.isEmpty()){
-                System.out.println(strL);
+                
                 Alumno ultimoBloque = transDato.obtenerDato(strL);
                 if(archivo){
                     transDato.escribirDato(ultimoBloque,escL);
@@ -220,6 +237,21 @@ public class Merge {
         //Lee la primera linea de la iteracion
         strR = checkR.readLine();
         strL = checkL.readLine();
+        
+        if(strR.isEmpty()){
+            System.out.println("Los datos ordenados están en "+leerL);
+            System.out.println(" ");
+            System.out.println("Los archivos están en: ");
+            System.out.println(folderPath);
+        }
+        if(strL.isEmpty()){
+            System.out.println("Los datos ordenados están en "+leerR);
+            System.out.println(" ");
+            System.out.println("Los archivos están en: ");
+            System.out.println(folderPath);
+        }
+       
+      
         if(!strR.isEmpty()&&!strL.isEmpty()){     
             Dato transDato = new Dato();
             boolean archivo = true;
@@ -235,10 +267,6 @@ public class Merge {
                     Alumno alumL;
                     alumR = transDato.obtenerDato(strR);
                     alumL = transDato.obtenerDato(strL);
-
-                    System.out.print(alumL.getApellido().toUpperCase()+" ");
-                    System.out.print(alumR.getApellido().toUpperCase()+" ");
-                    System.out.println(alumL.getApellido().toUpperCase().compareTo(alumR.getApellido().toUpperCase())<=0);
                    
                     if(alumL.getApellido().toUpperCase().compareTo(alumR.getApellido().toUpperCase())<=0){
                         if(archivo){
@@ -262,7 +290,6 @@ public class Merge {
                 }
                 while(strR!=null&&!strR.isEmpty()){
                     Alumno alumR;
-                    System.out.println(strR);
                     alumR = transDato.obtenerDato(strR); 
                     if(archivo){
                         transDato.escribirDato(alumR,escL);
@@ -301,7 +328,7 @@ public class Merge {
             }
      
             while(strL!=null&&!strL.isEmpty()){
-                System.out.println(strL);
+               
                 Alumno ultimoBloque = transDato.obtenerDato(strL);
                 if(archivo){
                     transDato.escribirDato(ultimoBloque,escL);
@@ -380,6 +407,21 @@ public class Merge {
         //Lee la primera linea de la iteracion
         strR = checkR.readLine();
         strL = checkL.readLine();
+        
+        if(strR.isEmpty()){
+            System.out.println("Los datos ordenados están en "+leerL);
+            System.out.println(" ");
+            System.out.println("Los archivos están en: ");
+            System.out.println(folderPath);
+        }
+        if(strL.isEmpty()){
+            System.out.println("Los datos ordenados están en "+leerR);
+            System.out.println(" ");
+            System.out.println("Los archivos están en: ");
+            System.out.println(folderPath);
+        }
+        
+        
         if(!strR.isEmpty()&&!strL.isEmpty()){     
             Dato transDato = new Dato();
             boolean archivo = true;
@@ -398,7 +440,6 @@ public class Merge {
 
                     System.out.print(alumL.getApellido().toUpperCase()+" ");
                     System.out.print(alumR.getApellido().toUpperCase()+" ");
-                    System.out.println(alumL.getApellido().toUpperCase().compareTo(alumR.getApellido().toUpperCase())<=0);
                    
                     if(alumL.getNombre().toUpperCase().compareTo(alumR.getNombre().toUpperCase())<=0){
                         if(archivo){
@@ -422,7 +463,6 @@ public class Merge {
                 }
                 while(strR!=null&&!strR.isEmpty()){
                     Alumno alumR;
-                    System.out.println(strR);
                     alumR = transDato.obtenerDato(strR); 
                     if(archivo){
                         transDato.escribirDato(alumR,escL);
@@ -461,7 +501,7 @@ public class Merge {
             }
      
             while(strL!=null&&!strL.isEmpty()){
-                System.out.println(strL);
+
                 Alumno ultimoBloque = transDato.obtenerDato(strL);
                 if(archivo){
                     transDato.escribirDato(ultimoBloque,escL);

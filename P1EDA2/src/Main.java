@@ -32,13 +32,31 @@ public class Main {
             System.out.println("\tA. Mezcla equilibrada");
             System.out.println("\tB. Polifase");
             System.out.println("\tC. Radix");
-            System.out.println("\tD) Salir");
+            System.out.println("\tD. Salir");
             System.out.print("\nElegir metodo de ordenamiento:   ");
             String opcion = sc.nextLine();
         
             if(opcion.equals("C")){
+                System.out.println("\t1. Nombre");
+                System.out.println("\t2. Apellido");
+                System.out.println("\t3. NoCuenta");
+                System.out.print("\nSeleccione qué quiere ordenar:   ");
+                int num = Integer.valueOf(sc.nextLine());
                 RadixSort radix = new RadixSort();
-                radix.RadixSort(nombre); 
+                switch(num){
+                    case 1:
+                       radix.RadixSortN(nombre); 
+                    break;
+                    
+                    case 2:
+                        radix.RadixSortA(nombre); 
+                    break;
+                    
+                    case 3:                        
+                        radix.RadixSortC(nombre); 
+                    default:
+                        break;
+                } 
             }
             
             else if(opcion.equals("A")){
