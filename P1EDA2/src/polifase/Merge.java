@@ -23,6 +23,7 @@ public class Merge {
         BufferedReader checkL = new BufferedReader(rL);
         String strR = checkR.readLine();
         String strL = checkL.readLine();
+        
 
         
              //No se crearán archivos ahora
@@ -65,6 +66,23 @@ public class Merge {
         //Lee la primera linea de la iteracion
         strR = checkR.readLine();
         strL = checkL.readLine();
+        
+        if(strR.isEmpty()){
+            System.out.println("Los datos ordenados están en "+leerL);
+            System.out.println(" ");
+            System.out.println("Los archivos están en: ");
+            System.out.println(folderPath);
+        }
+        if(strL.isEmpty()){
+            System.out.println("Los datos ordenados están en "+leerR);
+            System.out.println(" ");
+            System.out.println("Los archivos están en: ");
+            System.out.println(folderPath);
+        }
+        
+        
+        
+        
         if(!strR.isEmpty()&&!strL.isEmpty()){     
             Dato transDato = new Dato();
             boolean archivo = true;
@@ -219,6 +237,21 @@ public class Merge {
         //Lee la primera linea de la iteracion
         strR = checkR.readLine();
         strL = checkL.readLine();
+        
+        if(strR.isEmpty()){
+            System.out.println("Los datos ordenados están en "+leerL);
+            System.out.println(" ");
+            System.out.println("Los archivos están en: ");
+            System.out.println(folderPath);
+        }
+        if(strL.isEmpty()){
+            System.out.println("Los datos ordenados están en "+leerR);
+            System.out.println(" ");
+            System.out.println("Los archivos están en: ");
+            System.out.println(folderPath);
+        }
+       
+      
         if(!strR.isEmpty()&&!strL.isEmpty()){     
             Dato transDato = new Dato();
             boolean archivo = true;
@@ -374,6 +407,21 @@ public class Merge {
         //Lee la primera linea de la iteracion
         strR = checkR.readLine();
         strL = checkL.readLine();
+        
+        if(strR.isEmpty()){
+            System.out.println("Los datos ordenados están en "+leerL);
+            System.out.println(" ");
+            System.out.println("Los archivos están en: ");
+            System.out.println(folderPath);
+        }
+        if(strL.isEmpty()){
+            System.out.println("Los datos ordenados están en "+leerR);
+            System.out.println(" ");
+            System.out.println("Los archivos están en: ");
+            System.out.println(folderPath);
+        }
+        
+        
         if(!strR.isEmpty()&&!strL.isEmpty()){     
             Dato transDato = new Dato();
             boolean archivo = true;
