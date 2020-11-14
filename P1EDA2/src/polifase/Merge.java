@@ -65,7 +65,6 @@ public class Merge {
         //Lee la primera linea de la iteracion
         strR = checkR.readLine();
         strL = checkL.readLine();
-        System.out.println("strR: "+strR+" strL: "+strL);
         if(!strR.isEmpty()&&!strL.isEmpty()){     
             Dato transDato = new Dato();
             boolean archivo = true;
@@ -142,7 +141,7 @@ public class Merge {
             }
      
             while(strL!=null&&!strL.isEmpty()){
-                System.out.println(strL);
+                
                 Alumno ultimoBloque = transDato.obtenerDato(strL);
                 if(archivo){
                     transDato.escribirDato(ultimoBloque,escL);
@@ -235,10 +234,6 @@ public class Merge {
                     Alumno alumL;
                     alumR = transDato.obtenerDato(strR);
                     alumL = transDato.obtenerDato(strL);
-
-                    System.out.print(alumL.getApellido().toUpperCase()+" ");
-                    System.out.print(alumR.getApellido().toUpperCase()+" ");
-                    System.out.println(alumL.getApellido().toUpperCase().compareTo(alumR.getApellido().toUpperCase())<=0);
                    
                     if(alumL.getApellido().toUpperCase().compareTo(alumR.getApellido().toUpperCase())<=0){
                         if(archivo){
@@ -262,7 +257,6 @@ public class Merge {
                 }
                 while(strR!=null&&!strR.isEmpty()){
                     Alumno alumR;
-                    System.out.println(strR);
                     alumR = transDato.obtenerDato(strR); 
                     if(archivo){
                         transDato.escribirDato(alumR,escL);
@@ -301,7 +295,7 @@ public class Merge {
             }
      
             while(strL!=null&&!strL.isEmpty()){
-                System.out.println(strL);
+               
                 Alumno ultimoBloque = transDato.obtenerDato(strL);
                 if(archivo){
                     transDato.escribirDato(ultimoBloque,escL);
@@ -398,7 +392,6 @@ public class Merge {
 
                     System.out.print(alumL.getApellido().toUpperCase()+" ");
                     System.out.print(alumR.getApellido().toUpperCase()+" ");
-                    System.out.println(alumL.getApellido().toUpperCase().compareTo(alumR.getApellido().toUpperCase())<=0);
                    
                     if(alumL.getNombre().toUpperCase().compareTo(alumR.getNombre().toUpperCase())<=0){
                         if(archivo){
@@ -422,7 +415,6 @@ public class Merge {
                 }
                 while(strR!=null&&!strR.isEmpty()){
                     Alumno alumR;
-                    System.out.println(strR);
                     alumR = transDato.obtenerDato(strR); 
                     if(archivo){
                         transDato.escribirDato(alumR,escL);
@@ -461,7 +453,7 @@ public class Merge {
             }
      
             while(strL!=null&&!strL.isEmpty()){
-                System.out.println(strL);
+
                 Alumno ultimoBloque = transDato.obtenerDato(strL);
                 if(archivo){
                     transDato.escribirDato(ultimoBloque,escL);
