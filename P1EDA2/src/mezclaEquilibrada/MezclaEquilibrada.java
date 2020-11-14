@@ -17,6 +17,7 @@ public abstract class MezclaEquilibrada {
     
     public void mezcla(String archivo) throws IOException{
         boolean b;
+        int iteraciones=0;
         String carpetaPath;
         
         File carpeta = new File("MezclaEquilibradaFiles");        
@@ -49,14 +50,16 @@ public abstract class MezclaEquilibrada {
         do{
             mezclaD(b,lectura_f1,lectura_f2, carpetaPath);
             b = mezclaE(lectura_f0, carpetaPath);
+            iteraciones++;
         } while(b==false);
         
         lectura_f0.close();
         lectura_f1.close();
         lectura_f2.close();
         reader.close();        
-        
+                
         System.out.println("Archivo correctamente ordenado");
+        System.out.println("Iteraciones: "+iteraciones);
         System.out.println("El archivo ordenado de encuentra en: "+f0.getAbsolutePath());
         System.out.println("Los archivos auxiliares utilizados para el ordenamiento se encuentran en: ");
         System.out.println(f1.getAbsolutePath());
