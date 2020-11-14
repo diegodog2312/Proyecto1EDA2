@@ -15,6 +15,69 @@ Estructura de datos y algoritmos II}
 
 \maketitle{}
 
+\section{Polifase}
+Polifase es un algoritmo de ordenamiento externo que requiere de un ordenamiento interno y de 3 archivos auxiliares. El algoritmo básicamente consiste separar la colección inicial de datos en pequeños grupos ordenados, y después, a través de merge, unirlos en uno solo. 
+\par
+Es necesario un algoritmo de ordenamiento interno para ordenar los pequeños grupos de de datos. Los grupos de datos deben caber en memoria interna por esta razón, así que el tamaño de los grupos se suele elegir en función del tamaño del la memoria interna.
+\par
+El proceso de generación de estos bloques es simple. Primero, se lee el grupo de datos del archivo de entrada(F0) y se ordenan los datos con un algoritmo de ordenamiento interno. Para este proyecto se eligió Insertion Sort, porque el tamaño de los bloques se fijó en 10 datos y porque es un algoritmo sencillo y eficiente para cantidades de datos pequeñas. Después, el grupo ordenado se escribe en un archivo auxiliar (F1) y se repite el proceso para el siguiente grupo, solo que en esta ocasión se escribe en otro archivo auxiliar (F2).
+ 
+\par 
+Después de tener los pequeños grupos ordenados, se hace merge entre pares de ellos para generar uno más grande. Este proceso se repite hasta que quede solo un grupo con todos los datos ordenados.
+\par
+Para hacer el merge, los archivos F1 y F2 se convierten en los archivos de lectura. Luego, el primer bloque de F1 se intercala con el primer bloque de F2 y se escribe el bloque resultante en F0. Luego, se repite el proceso con el segundo bloque de cada archivo, pero esta vez el resultado se escribe en F3. Cuando se terminan los bloques de F1 y F2, F0 y F3 se vuelven los archivos de lectura y F1 y F2 en los de salida. Se repite el proceso hasta que todos los datos estén en un solo archivo.
+
+\section{Clase File}
+Todos los sistemas operativos requieren de pathnames para nombrar archivos y directorios. Esta clase es una vista abstracta e independiente del sistema operativo de los pathnames. Los pathnames consisten en un prefijo específico del sistema y una secuencia de cero o más directorios separados por un carácter también determinado por el sistema( En sistemas unix-like ``/ `` y en Windows ``\textbackslash"). Además, los pathnames pueden ser absolutos o relativos. Los absolutos son las rutas completas desde la raíz del sistema y los relativos son solo parte de ellas. File por defecto resuelve las rutas relativas al directorio en el que se invocó a la JVM.  
+\par
+Las instancias de esta clase no necesariamente refieren a archivos o directorios que realmente existen. Si representan a un archivo o directorio real, entonces ese archivo o directorio debe existir en el sistema de archivos. Además, las instancia de esta clase no son mutables, por lo que no pueden ser modificadas después de su creación.
+\par 
+El sistema de archivos puede administrar los permisos de archivos y directorios de los cuales esta clase es dependiente. Estos permisos pueden hace que algunos métodos de esta clase fallen. 
+
+Algunos de los métodos que utilizamos de esta clase en el proyecto son:
+
+\begin{itemize}
+\item createNewFile(): Crea un nuevo archivo si y solo si el archivo aun no existe.
+\item delate(): Elimina el archivo si es que existe. Si la instancia refiere a un directorio entonces este debe estar vacío.
+\item exists(): Verifica que el archivo denotado por el pathname exista.
+\item getAbsolutePath(): regresa una cadena con la ruta absoluta del archivo.
+\item isDirectory(): Verifica si la instancia refiere a un directorio.
+\item listFiles(): Devuelve un arreglo de objetos File de todos los archivos dentro de un directorio.
+\item mkdir(): Crea un directorio en la ruta de la instancia.
+
+\end{itemize}
+
+\section{Analisis de Polifase}
+La implementación de polifase se divide en cuatro clases agrupadas en el paquete polifase, y utiliza a las  clases dato y alumno del paquete dato.
+Los nombres de las clases son Polifase, Merge, InsertionSort y FilesDirect.
+
+\subsection{Clase Polifase}
+La clase polifase es el método principal de polifase. Dentro de ella se pueden encontrar tres variantes del método sort, una para cada criterio de ordenamiento. Lo mismo sucede con las clases Merge e InsertionSort. Para este análisis y explicación del programa, se tomara en cuenta solo la versión para número de cuenta y se mencionarán las diferencias con las variantes.
+
+El método sortNum recibe como parámetro el nombre del archivo que se va a ordenar. Algo importante que notar es que recibe únicamente el nombre del archivo y no su ruta completa, ya que esta de genera más adelante. 
+
+Lo primero que hace este método es instanciar algunas de las clases necesarias, como FilesDirect, File, FileReader, BufferedReader, Merge y Dato. Con el método rutaFolder de FilesDirect se obtiene la ruta del directorio donde se guardarán los archivos. En seguida, se crea dicho directorio junto a los archivos.
+
+Luego, el método comienza con el proceso de separar el archivo de entra en bloques. Dentro de un do while, el programa verifica que haya al menos 10 elementos para crear el primer bloque, si no es así, cuenta cuantos elementos realmente hay. Luego, el programa llama a al método leer dato de la case dato. Este método recibe desde que linea debe empezar a leer los datos hasta que otra linea debe dejar de leerlos y devuelve una lista con objetos Alumno.
+
+Después, esa lista es ordenada con el ordenamiento interno, en este caso con la versión para números de cuenta llamada inSortNum de la clase InsetionSort. Aquí es donde esta la única diferencia entre las diferentes versiones del método polifase, ya que la versión para nombres llama a inSortNom y la versión para apellidos a inSortApe.
+ 
+posteriormente, se escriben los datos ordenados en el archivo auxiliar F1. Finalmente, el programa verifica que el archivo aun no esté vacío. Si esta vacío, sale del ciclo do-while, si no,vuelve a contar 10 elementos, los ordena y los escribe, esta vez en el archivo F2 (La siguiente escritura será en F1, la siguiente en F2 y así sucesivamente). Este proceso se repite hasta que no haya más datos que leer en el archivo original.
+
+Una vez que terminó de separar los datos del archivo original entre los archivos F1 y F2, el método llama al método MergeNum de la clase Merge.
+
+\subsection{Clase Merge}
+La clase merge tienen tres métodos, mergeNum, mergeApe y mergeNom, cada una para un criterio de ordenamiento. Como ya se dijo, solo se explicará la versión para número de cuenta y se harán notar las pequeñas diferencias entre las variantes.
+
+Cunado se instancia a esta clase, el constructor obtiene la ruta al directorio donde se guardarán los archivos con una instancia de la clase FilesDirect, que se almacena como un atributo del objeto.
+
+Los métodos de Merge reciben 5 parámetros, la ruta de los dos archivos de los que se va a lee,r la de los dos archivos a los que se va a escribir y un parámetro para tener un recuento de en que llamada recursiva se está. 
+
+Lo primero que se hace es crear dos instancias de las clases File, File
+
+
+
+
 
 
 \end{document}

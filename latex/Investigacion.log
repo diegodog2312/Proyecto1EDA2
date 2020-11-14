@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.8)  12 NOV 2020 19:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.8)  13 NOV 2020 22:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -74,8 +74,10 @@ File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
 \l__kernel_color_stack_int=\count186
 \l__pdf_internal_box=\box47
+) (./Investigacion.aux
+LaTeX Info: Redefining \. on input line 8.
+LaTeX Info: Redefining \% on input line 8.
 )
-No file Investigacion.aux.
 \openout1 = `Investigacion.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
@@ -94,6 +96,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
 LaTeX Info: Redefining \. on input line 14.
 LaTeX Info: Redefining \% on input line 14.
+
 (d:/Programas/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count187
@@ -123,30 +126,40 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 16.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 16.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 3
+1.
 
-[1
+(d:/Programas/texlive/2020/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 31.
+ [1
 
-{d:/Programas/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+{d:/Programas/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [
+3]
 (./Investigacion.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 ) ) 
 Here is how much of TeX's memory you used:
- 2320 strings out of 479485
- 33642 string characters out of 5870960
- 320527 words of memory out of 5000000
- 19356 multiletter control sequences out of 15000+600000
- 538423 words of font info for 40 fonts, out of 8000000 for 9000
+ 2353 strings out of 479485
+ 34162 string characters out of 5870960
+ 327518 words of memory out of 5000000
+ 19383 multiletter control sequences out of 15000+600000
+ 539592 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,7n,72p,190b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
-<d:/Programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
-fb><d:/Programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.p
-fb><d:/Programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.p
-fb>
-Output written on Investigacion.pdf (1 page, 32368 bytes).
+ 66i,7n,72p,758b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
+<d:/Programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
+pfb><d:/Programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.
+pfb><d:/Programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.
+pfb><d:/Programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.
+pfb><d:/Programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb>
+Output written on Investigacion.pdf (3 pages, 67955 bytes).
 PDF statistics:
- 20 PDF objects out of 1000 (max. 8388607)
- 13 compressed objects within 1 object stream
+ 34 PDF objects out of 1000 (max. 8388607)
+ 23 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
