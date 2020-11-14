@@ -32,7 +32,7 @@ public class Main {
             System.out.println("\tA. Mezcla equilibrada");
             System.out.println("\tB. Polifase");
             System.out.println("\tC. Radix");
-            System.out.println("\tD) Salir");
+            System.out.println("\tD. Salir");
             System.out.print("\nElegir metodo de ordenamiento:   ");
             String opcion = sc.nextLine();
         
