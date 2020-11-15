@@ -5,10 +5,25 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * Clase que contiene diferentes versiones del método sort para odenar por los
+ * diferentes criterios. En esta clase se encuentran los métodos principales 
+ * para el ordenamineto polifase
+ * @author Ricardo López
+ */
 public class Polifase {
     String folderpath;    
-    
+    /**
+     * Método que se encaga leer al archivo original, separar los datos 
+     * en bloques pequeños de 10 elementos, ordenar los bloques y escribirlos 
+     * en los archivos F1 y F2.Para posterior mente unir a los archivos 
+     * se llama al método mergeNum de la clase Merge.
+     * Para el ordenamineto de los bloques se llama al método inSortNum de la 
+     * clase InsertionSort.
+     * @param nombreArch Nombre del archivo a ordenar ingresado por el usuario
+     * en el main.
+     * @throws IOException 
+     */
     public void sortNum(String nombreArch) throws IOException{
         FilesDirect admiFiles = new FilesDirect();
         folderpath = admiFiles.rutaFolder();
@@ -57,6 +72,17 @@ public class Polifase {
         contar.close();
         lectura.close();
     }
+        /**
+     * Método que se encaga leer al archivo original, separar los datos 
+     * en bloques pequeños de 10 elementos, ordenar los bloques y escribirlos 
+     * en los archivos F1 y F2. Para posterior mente unir a los archivos 
+     * se llama al método mergeApe de la clase Merge.
+     * Para el ordenamineto de los bloques se llama al método inSortApe de la 
+     * clase InsertionSort.
+     * @param nombreArch Nombre del archivo a ordenar ingresado por el usuario
+     * en el main.
+     * @throws IOException 
+     */
     public void sortApe(String nombreArch) throws IOException{
         FilesDirect admiFiles = new FilesDirect();
         folderpath = admiFiles.rutaFolder();
@@ -105,7 +131,17 @@ public class Polifase {
         contar.close();
         lectura.close();
     }
-   
+       /**
+     * Método que se encaga leer al archivo original, separar los datos 
+     * en bloques pequeños de 10 elementos, ordenar los bloques y escribirlos 
+     * en los archivos F1 y F2. Para posterior mente unir a los archivos 
+     * se llama al método mergeNom de la clase Merge.
+     * Para el ordenamineto de los bloques se llama al método inSortNom de la 
+     * clase InsertionSort.
+     * @param nombreArch Nombre del archivo a ordenar ingresado por el usuario
+     * en el main.
+     * @throws IOException 
+     */
     public void sortNom(String nombreArch) throws IOException{
         FilesDirect admiFiles = new FilesDirect();
         folderpath = admiFiles.rutaFolder();

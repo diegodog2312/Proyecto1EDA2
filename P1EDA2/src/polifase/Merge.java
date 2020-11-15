@@ -4,15 +4,49 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-
+/**
+ * Clase que contiene  a los métodos necesarios para hacer merge de los bloques
+ * de datos de dos archvos. Los bloques de datos deben estár separados por un
+ * salto de linea y las diferentes interaciones del archivo por un arroba.
+ * 
+ * En esta clase se pueden encontar tres métodos, uno para cada criterio de
+ * ordenamiento.
+ * @author Ricardo López
+ */
 public class Merge {
     String folderPath;
-
+    /**
+     * Este constructor obtiene la ruta al fonder donde están los archivos 
+     * F1, F2, F3 y F4 con ayuda de una instacia de la clase FilesDirect. La ruta
+     * al fonder se alamacena en como una string en el atributo foderPath.
+     */
     public Merge (){
         FilesDirect ruta = new FilesDirect();
         folderPath = ruta.rutaFolder();
     }
-
+/**
+ * Este método une bloques de datos de dos archivos. Los bloques de datos deben
+ * estar separados por un salto de linea y las diferentes iteraciones del archivo
+ * por un arroba. Los archivos de lectura son leerR y leerL
+ * La escritura de los bloques unidos se van intercambiando entre escL y escR.
+ * Para hacer las comparfaciones necesarias para el merge se utiliza el operador
+ * de relación "menor-igual que" y el atributo de número de cuenta de los 
+ * objetos alumno.
+ * Este método es recursivo. Su caso base es cuando en alguno de los archivos 
+ * de lectura ya no hay más elementos en una interación, lo que significa que 
+ * todos los datos están en el otro. Al hacer la llamada recursiva, leerR se 
+ * convierte en escR, leerL en escL, escL en leerL y escR en leerR.
+ * @param leerR Archivo de lectura 1. Archivo de "la derecha". En la primera 
+ * iteración este archivo es F1
+ * @param leerL Archivo de lectura 2. Archivo de "la izquierda".En la primera
+ * iteración este archivo es F2.
+ * @param escR Archivo de escritura 1. Archivo de escritura de "la derecha". En la
+ * primera iteración este archivo es F3.
+ * @param escL Archivo de escritura 2. Archivo de escritura de "la inzquierda". En la
+ * primera iteración este archivo es F4.
+ * @param iteration Parametro para saber en que llamada recursiva se está. 
+ * @throws IOException 
+ */
     public void mergeNum(String leerR, String leerL, String escR, String escL, int iteration) throws IOException{        
 
         File r = new File(leerR);
@@ -187,6 +221,28 @@ public class Merge {
         checkL.close();
         checkR.close();
     }
+    /**
+ * Este método une bloques de datos de dos archivos. Los bloques de datos deben
+ * estar separados por un salto de linea y las diferentes iteraciones del archivo
+ * por un arroba. Los archivos de lectura son leerR y leerL
+ * La escritura de los bloques unidos se van intercambiando entre escL y escR.
+ * Para hacer las comparaciones necesarias para el merge se utiliza el atributo 
+ * de apellido de los objetos Alumno y el método compareTo de las cadenas.
+ * Este método es recursivo. Su caso base es cuando en alguno de los archivos 
+ * de lectura ya no hay más elementos en una interación, lo que significa que 
+ * todos los datos están en el otro. Al hacer la llamada recursiva, leerR se 
+ * convierte en escR, leerL en escL, escL en leerL y escR en leerR.
+ * @param leerR Archivo de lectura 1. Archivo de "la derecha". En la primera 
+ * iteración este archivo es F1
+ * @param leerL Archivo de lectura 2. Archivo de "la izquierda".En la primera
+ * iteración este archivo es F2.
+ * @param escR Archivo de escritura 1. Archivo de escritura de "la derecha". En la
+ * primera iteración este archivo es F3.
+ * @param escL Archivo de escritura 2. Archivo de escritura de "la inzquierda". En la
+ * primera iteración este archivo es F4.
+ * @param iteration Parametro para saber en que llamada recursiva se está. 
+ * @throws IOException 
+ */
     public void mergeApe(String leerR, String leerL, String escR, String escL, int iteration) throws IOException{        
 
         File r = new File(leerR);
@@ -356,6 +412,28 @@ public class Merge {
         checkL.close();
         checkR.close();
     }
+     /**
+ * Este método une bloques de datos de dos archivos. Los bloques de datos deben
+ * estar separados por un salto de linea y las diferentes iteraciones del archivo
+ * por un arroba. Los archivos de lectura son leerR y leerL
+ * La escritura de los bloques unidos se van intercambiando entre escL y escR.
+ * Para hacer las comparaciones necesarias para el merge se utiliza el atributo 
+ * de nombre de los objetos Alumno y el método compareTo de las cadenas.
+ * Este método es recursivo. Su caso base es cuando en alguno de los archivos 
+ * de lectura ya no hay más elementos en una interación, lo que significa que 
+ * todos los datos están en el otro. Al hacer la llamada recursiva, leerR se 
+ * convierte en escR, leerL en escL, escL en leerL y escR en leerR.
+ * @param leerR Archivo de lectura 1. Archivo de "la derecha". En la primera 
+ * iteración este archivo es F1
+ * @param leerL Archivo de lectura 2. Archivo de "la izquierda".En la primera
+ * iteración este archivo es F2.
+ * @param escR Archivo de escritura 1. Archivo de escritura de "la derecha". En la
+ * primera iteración este archivo es F3.
+ * @param escL Archivo de escritura 2. Archivo de escritura de "la inzquierda". En la
+ * primera iteración este archivo es F4.
+ * @param iteration Parametro para saber en que llamada recursiva se está. 
+ * @throws IOException 
+ */
     
     public void mergeNom(String leerR, String leerL, String escR, String escL, int iteration) throws IOException{        
 
