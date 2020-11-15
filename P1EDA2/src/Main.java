@@ -5,6 +5,7 @@ import java.util.Scanner;
 import mezclaEquilibrada.*;
 import polifase.*;
 import Radix.*;
+import java.io.File;
 
 /*
 La clase Main contiene al método main del del programa.
