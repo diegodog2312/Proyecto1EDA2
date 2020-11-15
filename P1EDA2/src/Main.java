@@ -27,7 +27,13 @@ public class Main {
             System.out.println("\n\nMENU DE ORDENAMIENTO");
             System.out.print("Ingrese nombre de archivo a ordenar:   ");  
             Scanner sc = new Scanner(System.in);
-            String nombre = sc.nextLine();            
+            String nombre = sc.nextLine();          
+            
+            File file = new File(nombre);
+            if(file.exists()==false){
+                System.out.println("No existe el archivo");
+                return;
+            }
          
             System.out.println("\tA. Mezcla equilibrada");
             System.out.println("\tB. Polifase");
