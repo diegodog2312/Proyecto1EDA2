@@ -1,9 +1,9 @@
 package dato;
 
 /**
+ * Esta clase representa a un alumno con un nombre, apellido y número de cuenta.
  * @author Equipo 8
  * @version 1.0
- * Esta clase representa a un alumno con un nombre, apellido y número de cuenta.
  */
 
 

@@ -7,11 +7,11 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * @author Diego Ignacio Nuñez Hernandez
- * @version 1.0
  * Esta clase es la encargada de crear el directorio y los archivos auxiliares
  * para el ordenamiento. Además, se encarga de ejecutar los métodos necesarios hasta que
  * se haya podido cumplir con el objetivo de ordenar.
+ * @author Diego Ignacio Nuñez Hernandez
+ * @version 1.0
  */
 public abstract class MezclaEquilibrada {      
     /**

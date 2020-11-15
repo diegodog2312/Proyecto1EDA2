@@ -9,10 +9,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * @author Equipo 8
- * @version 1.0
  * Esta clase se encarga del manejo de los archivos de texto. Contiene métodos
  * para escribir y para leer datos específicos.
+ * @author Equipo 8
+ * @version 1.0
  */
 public class Dato {
     /**
