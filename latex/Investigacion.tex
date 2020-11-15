@@ -15,13 +15,13 @@ Estructura de datos y algoritmos II}
 
 \maketitle{}
 \section{Objetivo}
-Que el alumno implemente los algoritmosde ordenamiento externo,que conozca elementos para el manejo de archivos,aplique los conceptos generales deprogramacióny desarrolle sus habilidades de trabajo en equipo.
+Que el alumno implemente los algoritmos de ordenamiento externo,que conozca elementos para el manejo de archivos,aplique los conceptos generales de programación y desarrolle sus habilidades de trabajo en equipo.
 
 \section{Introducción}
 Los algoritmos de ordenamiento nos permiten, como lo indica el nombre, ordenar o reorganizar un conjunto de datos. Esto es una operación fundamental no sólo en la computación sino en la vida cotidiana ya que facilita la búsqueda, agiliza procesos, permite manipular mejor la información, eliminar duplicados, entre otros. 
 
 \paragraph{}
-Cuando se va a ordenar algo, es necesario considerar cuál es el algortimo de ordenamiento más adecuado, esto se puede determinar dependiendo del contexto, el tamaño del problema, el tiempo, verificació, pero nos vamos a enfocar en la memoria. A pesar de que cada vez los ordenadores cuentan con más memoria interna, existen situaciones en la que no se puede realizar la operación enteramente ahí, ya sea por la capacidad del dispositivo o por la cantidad de elementos a ordenar, en ese caso los datos deben de ser guardados en almacenamiento secundario como tarjetas o discos duros,y se deben de usar algoritos de ordenmiento externo. 
+Cuando se va a ordenar algo, es necesario considerar cuál es el algortimo de ordenamiento más adecuado, esto se puede determinar dependiendo del contexto, podría ser el tamaño del problema, el tiempo, la verificación, pero en esta ocasión nos vamos a enfocar en la memoria. A pesar de que cada vez los ordenadores cuentan con más memoria interna, existen situaciones en la que no se puede realizar la operación enteramente ahí, ya sea por la capacidad del dispositivo o por la cantidad de elementos a ordenar, en ese caso los datos deben de ser guardados en almacenamiento secundario como tarjetas o discos duros,y se deben de usar algoritos de ordenmiento externo. 
 
 
 \paragraph{}
@@ -35,10 +35,10 @@ En la segunda se mezclan los bloques hasta tener el archivo ordenado.
 \end{itemize}
 
 \paragraph{}
-Para poder acceder a la mmoria externa se tuvieron que usar herramientas par el manejor de archivos. La entrada y salida de Java se organiza mediante objetos llamados Streams, que funcionan como intermediarios entre el programa y el origen o destino de la información generalizan a un fichero, es una secuencia de bytes en un dispositivo de almacenamiento. Los representa la clase java.io.
+Para poder acceder a la memoria externa se tuvieron que usar herramientas para el manejo de archivos. La entrada y salida de Java se organiza mediante objetos llamados Streams, que funcionan como intermediarios entre el programa y el origen o destino de la información, generalizan a un fichero, que es una secuencia de bytes en un dispositivo de almacenamiento. Los representa la clase java.io, que fueron importadas para cada archivo del proyecto. 
 
 \paragraph{}
-En el presente proyecto se busca aplicar los conocimientos aprendidos del tema para simular tres diferentes algortimos en lenguaje de programación Java en los que se utilizarán archivos para ordenar los elementos. 
+En el presente proyecto se busca aplicar los conocimientos aprendidos del tema de ordenamiento para simular tres diferentes algortimos en el lenguaje de programación Java en los que se utilizarán archivos para ordenar los elementos. 
 
 
 \section{Mezcla Equilibrada}
@@ -61,8 +61,10 @@ Después de tener los pequeños grupos ordenados, se hace merge entre pares de e
 Para hacer el merge, los archivos F1 y F2 se convierten en los archivos de lectura. Luego, el primer bloque de F1 se intercala con el primer bloque de F2 y se escribe el bloque resultante en F0. Luego, se repite el proceso con el segundo bloque de cada archivo, pero esta vez el resultado se escribe en F3. Cuando se terminan los bloques de F1 y F2, F0 y F3 se vuelven los archivos de lectura y F1 y F2 en los de salida. Se repite el proceso hasta que todos los datos estén en un solo archivo.
 
 \section{Radix}
-Radix sort es un algoritmo de distribución que itera sobre claves en dígitos o carácteres específicos para luego separarlos en colas, de tal manera que se agrupan en ellas si tienen el mismo valor en la misma posición, por lo tanto requiere w número de iteraciones.
+Radix sort es un algoritmo de distribución que itera sobre claves en dígitos o carácteres específicos para luego separarlos en colas, de tal manera que se agrupan en ellas si tienen el mismo valor en la misma posición, por lo tanto requiere w número de iteraciones, donde w es el número de dígitos o carácteres en el número o cadena.
 
+Al ser implementado externamente, en lugar de colas, se colocarán los datos en archivos de texto, hay uno para cada carácter o dígito. 
+ 
 Hay dos variantes importantes para este algoritmo:
 \begin{itemize}
 \item{LDS}
@@ -74,7 +76,7 @@ Dígito más significativo.
 La diferencia principal entre estos es por dónde comienza el ordenamiento, en LSD se consideran los carácteres de derecha a izquierda, en MSD se parte el archivo en R partes iguales de acuerdo con los primeros carácteres y se ordenan recursivamente las cadenas por los carácteres con los que empiezan. 
 
 \paragraph{}
-En este proyecto se considero la variante LSD porque a diferencia de la otra, es estable, es decir, al ordenar elementos por un criterio se conserva el orden de entrada y si se quiere ordenar por otro criterio, se mantiene el ordenamiento anterior, y no produce tantos archivos pequeños por la recursividad. 
+En este proyecto se considera la variante LSD porque a diferencia de la otra, es estable, es decir, al ordenar elementos por un criterio se conserva el orden de entrada y si se quiere ordenar por otro criterio más adelante, se mantiene el ordenamiento anterior, y no produce tantos archivos pequeños por la recursividad de MSD. 
 
 \subsection{Pseudocódigo}
 \begin{description}
@@ -119,27 +121,26 @@ Algunos de los métodos que utilizamos en el proyecto son:
 
 \subsection{FileReader}
 \paragraph{}
-Hereda a la clase InputStreamReader. La clase Java FileReader, java. io. FileReader hace posible leer el contenido de un archivo como una secuencia de caracteres. Funciona de manera muy similar a FileInputStream, excepto que FileInputStream lee bytes, mientras que FileReader lee caracteres. 
-Puede crear objetos que pueden leer archivos de texto. 
+Es una clase que puede crear objetos que pueden leer archivos de texto. 
+Hereda a la clase InputStreamReader. La clase Java FileReader, java. io. FileReader hace posible leer el contenido de un archivo como una secuencia de caracteres. Funciona de manera muy similar a FileInputStream, excepto que FileInputStream lee bytes, mientras que FileReader lee caracteres, para el funcionamiento del programa resulta mucho más efectivo leer estos que bytes, puesto que no vamos a transformar su contenido en objetos Alumno. 
 
 \subparagraph{Constructores}
 \begin{itemize}
 \item FileReader(File file)
 \quad Crea un lector de archivo con una archivo del cuál leer.
 \item FileReader(FileDescriptor fd)
-\quad Crea un lector de archivo con una FileDescriptor del cual leer.
+\quad Crea un lector de archivo con un FileDescriptor del cual leer.
 \item FileReader(String fileName)
-\quad Crea un lector de archivo con un nombre de achiivo del cuál leer.
+\quad Crea un lector de archivo con un nombre de archivo del cuál leer.
 \end{itemize}
 
 \subsection{BufferedReader}
-Hereda a la clase InputStreamReader. Cuando se necesita leer la información almacenada en un fichero que contiene caracteres podems utilizar la clase BufferedReader, en la que se lee el texto almacenando los caracteres leídos. Proporciona un buffer de almacenamiento temporal.
-BufferedReader es síncrono, resulta útil usarse si estamos trabajando con varios subprocesos,tiene una memoria de búfer significativamente más grande que Scanner.
+Hereda a la clase InputStreamReader. Cuando se necesita leer la información almacenada en un fichero que contiene caracteres podemos utilizar la clase BufferedReader, en la que se lee el texto almacenando los caracteres leídos. Proporciona un buffer de almacenamiento temporal síncrono, lo cuál resulta útil usar si estamos trabajando con varios subprocesos,como en este proyecto, tiene una memoria de búfer significativamente más grande que Scanner, de la clase java.util.Scanner.
 
 \subparagraph{Constructores}
 \begin{itemize}
-\item BufferedReader(Reader in)\quad Crea el buffer de tamaño estándar.
-\item BufferedReader(Reader in,int sz)\quad Crea el buffer de tamaño especificado.
+\item BufferedReader(Reader in):\quad Crea el buffer de tamaño estándar.
+\item BufferedReader(Reader in,int sz):\quad Crea el buffer de tamaño especificado.
 \end{itemize}
 \subparagraph{Métodos}
 \begin{itemize}
@@ -148,9 +149,8 @@ BufferedReader es síncrono, resulta útil usarse si estamos trabajando con vari
 \item int read() \quad Lee un carácter.
 \item String readLine() \quad Lee una linea de texto.
 \item void reset() \quad Regresa stream a marca más reciente. 
-\item long skip (long n) \quad Se salta carácteres. 
 \end{itemize}
-
+En el proyecto el método más usado para leer las cadenas en los archivos fue precisamente BufferedReader, permite leer línea por línea, además de recordar en cuál de ellas se quedó al leer un archivo.
 
 \subsection{FileWriter}
 
@@ -350,6 +350,8 @@ Después, con el método size de ArratList se obtiene la cantidad de elemento de
 Para hacer las comparaciones entre elementos se utiliza el getter getNoCuenta() de los alumnos y el comparador de relación $<=$ de java. Aquí es donde esta la diferencia entre las versiones. para nombres y apellidos se utiliza el método compareTo de las cadenas. Para evitar errores, se utiliza el método toUpperCase justo antes del anterior.
 
 \subsection{Radix}
+Radix se implementa a través de dos clases, en una se encuentran los algoritmos, RadixSort; y en la segunda, se puede encontrar todo lo relacionado con los archivos creados y el directorio. 
+
 \subsubsection{RadixFiles}
 En esta clase se crean los archivos necesarios para el funcionamiento del programa. Con el fin de tener todo más ordenado, se crea un directorio llamado radixFiles en el que se almacenará una carpeta del mismno nombre del archivo, dentro de ella estarán todas las iteraciones y el archivo ordenado, el camino a esta carpeta estará dado por el atributo folderpath. 
 
@@ -360,22 +362,22 @@ Crea el camino de la carpeta de iteraciones, su parámetro es el nombre del arch
 Método que obtiene la ruta al folder de las iteraciones, regresa esta ruta. 
 
 \paragraph{public File newFile(String nombre)}
-Crea un nuevo archivo en la carpeta creada para el archivo a ordenar, su paramétro es el nombre del archivo que se va a crear, que es lo que regresa. 
+Crea un nuevo archivo en la carpeta creada para el archivo a ordenar, su paramétro es el nombre del archivo, el cual primero elimina para asegurar que esté vacío y luego vuelve a crear dentro del directorio, este archivo que es lo que regresa. 
 
 \paragraph{public BufferedReader files(String filename,String archivo) }
-Su parámetro es el nombre de un archivo del cuál se creará el lector, así como el nombre del archivo a ordenar, de nuevo, para saber en qué carpeta crear los archivos. Crea un archivo en la carpeta y regresa su buffer de lectura.  
+Su parámetro es el nombre de un archivo del cuál se creará el lector, así como el nombre del archivo a ordenar para saber en qué carpeta crear los archivos. Crea un archivo en la carpeta usando el método previo newFile y regresa su buffer de lectura.  
 
 \subsubsection{Clase RadixSort}
 En esta clase se encuentran los algoritmos de ordenamiento por Radix, ya sea por nombre, apellido o número de cuenta. 
 
 \paragraph{readWrite(int n, BufferedReader file)} 
-Sus parámetros son un entero n, que es el número de líneas y el BufferedReader del archivo que se quiere leer. Lee un archivo por un cierto número de líneas y escribe todo su contenido en el archivo list.
+Sus parámetros son un entero n, que es el máximo número de líneas que se pueden leer y el BufferedReader del archivo que se quiere leer. Lee un archivo por un cierto número de líneas y escribe todo su contenido en el archivo list, que es en el que se juntan todos los datos después de cada iteración.
 
 \paragraph{getMax(Alumno alumno, int max)}
-Sus parámetros son un alumno, del que obtiene el número de cuenta, y un entero, que es el máximo actual. Obtiene el número máximo de dígitos en los números de cuenta. 
+Sus parámetros son un alumno, del que obtiene el número de cuenta, y un entero, que es el máximo actual. Obtiene el número de cuenta y lo compara con el mayor hasta el momento, si es más grande se redefine max, si no lo es, no ocurren cambios, se regresa el valor de max. 
 
 \paragraph{getMaxLength(Alumno alumno, int max, int met)}
-Obtiene la longitud máxima de una cadena, ya sea un apellido o un nombre, si met es igual a 1, la de apellidos, si no, se obtiene la longitud del nombre. 
+Obtiene la longitud máxima de una cadena, ya sea un apellido o un nombre, si met es igual a 1, la de apellidos, si no, se obtiene la longitud del nombre. Esta se compara con la longitud máxima hasta el momento y si es mayor se redefine, si no lo es, no ocurre nada. Se regresa el valor máximo. 
 
 \paragraph{printIte(String archivoD, int ite) }
 Recibe como parámetro el archivo en el que se quiere escribir y el número de iteración. Imprime una cadena que indica qué iteración está ocurriendo en los archivos auxiliares. 
@@ -386,31 +388,31 @@ En esta clase se ordenan números de cuenta por radix, recibe cómo parámetro e
 \paragraph{}
 Se crea el directorio para los archivos y posteriormente se crean 11 BufferedReaders, uno para cada archivo auxiliar que se necesita en el programa, en este caso es uno para cada dígito y uno para la lista de elementos tras las iteraciones. 
 \paragraph{} 
-Se copia el contenido del archivo original al de la lista y se encuentra el número máximo de números de cuenta, a partir del último dígito de este número se va buscando el dígito menos significativo para después colocarlo en el archivo auxiliar correspondiente. Por ejemplo, si estuviésemos evaluando unidades y se tiene el número 546, 6 sería el dígito significativo y se escribiría en el archivo auxiliar f6.
+Se copia el contenido del archivo original al de la lista y se encuentra el número máximo de números de cuenta, a partir del último dígito de este número se va buscando el dígito menos significativo para después colocarlo en el archivo auxiliar correspondiente. Por ejemplo, si estuviésemos evaluando unidades y se tiene el número 546, 6 sería el dígito significativo y se escribiría en el archivo auxiliar f6, esto ocurre para cada elemento de la lista. 
 Una vez que se recorrieron todos los datos, se leen los alumnos que están en cada uno de los archivos de dígito y se van colocando en la lista par realizar otra iteración si es que es posible. 
 Al final se cierran los BufferedReaders y se escriben los datos ordenados en un archivo.  
 
 \paragraph{RadixSortA(String archivo)}
 Recibe cómo parámetro el archivo que va a ordenar, este método implementa RadixSort para apellidos.
-Al igual que en el anterior método, se crea el directorio para todos los archivos de texto con sus lectores y se crean 27 de ellos, ahora uno por cada letra del abecedario, más la lista en la que se copiaran después de cada iteración.  
+Al igual que en el anterior, se crea el directorio para todos los archivos de texto con sus lectores, ahora se crean 27 de ellos, uno por cada letra del abecedario más la lista en la que se copiaran después de cada iteración. Sólo se tomaran en cuenta las letras mayúsculas, si hay minúsculas se convertirán para comparar su valor ASCII con las demás de manera equivalente.  
 \paragraph{}
 Se lee cada linea del archivo original y se copia en el archivo de lista, en este proceso también se encuentra cuál apellido es el de más tamáño usando el método getMaxLength.
 \paragraph{}
-Desde la posición más grande de las cadenas, hasta la más pequeñas, se realiza el siguiente proceso, Se lee cada línea de la lista, si es lo suficientemente larga se obtiene el carácter significativo y se coloca en el archivo auxiliar que le toque, si no es así, se volverá a escribir en la lista. 
+Desde la posición más grande de las cadenas, hasta la más pequeñas, se realiza el siguiente proceso: se lee cada línea de la lista, si es lo suficientemente larga se obtiene el carácter significativo, si es una letra se coloca en el archivo auxiliar que le toque, de no serlo se omite ese carácter y se coloca en el archivo auxiliar correspondiente, si no tiene la longitud necesaria para ser ordenado, se volverá a escribir al principio de la lista,con el fin de que cuando se alcanze una posición en la que sea posible, se ordene con los demás datos. 
 \paragraph{}
 Cuando se acaben de recorrer, se leen todos los archivos auxiliares y se vuelven a escribir en la lista, esto se repite hasta tener datos ordenados.
-\paragraph{} Una vez que estén ordenados, serán copiados en otro archivo dentro del directorio creado antteriormente, finalmente se cierran los BufferedReaders. 
+\paragraph{} Una vez que estén ordenados, serán copiados en otro archivo dentro del directorio creado anteriormente, finalmente se cierran los BufferedReaders. 
 
 \paragraph{RadixSortN(String archivo)}
-Este método recibe cómo parámetro al archivo original, igual que los dos anteriores, y luego se realiza exactamente lo mismo que en radix para apellidos, el proceso es idéntico, la única diferencia es que en vez de usar el apellido como criterio, se utiliza el nombre para obtener los dígitos significativos. 
+Este método recibe cómo parámetro al archivo original, al igual que los dos anteriores, y luego se realiza exactamente lo mismo que en radix para apellidos, el proceso es idéntico, la única diferencia es que en vez de usar el apellido como criterio, se utiliza el nombre para obtener los dígitos significativos. 
 
 \subsubsection{Análisis}
-Con esta implementación se puede ver que cómo funcionaría en memoria externa al usar archivos como colas, en ningún momento se tienen todos los datos en la memoria interna. Cada iteración de radix es de complejidad O(n), puesto que recorre todos los datos al sacarlos de las colas y colocarlos en la lista, si se tiene una longitud w de las claves a ordenar, la complejidad temporal del algoritmo es O(wn) para todos los casos. 
+Con esta implementación se puede ver cómo funcionaría radix en memoria externa al usar archivos como colas, en ningún momento se tienen todos los datos en la memoria interna. Cada iteración de radix es de complejidad O(n), puesto que recorre todos los datos al sacarlos de las colas y colocarlos en la lista, si se tiene una longitud w de las claves a ordenar, la complejidad temporal del algoritmo es O(wn) para todos los casos, puesto que al implementar LSD, no se sabe si el archivo ya está ordenado hasta que se hayan realizado todas las iteraciones posibles. 
 \paragraph{}
 Radix no es comúnmente usado para ordenar archivos, a diferencia de Polifase o Mezcla Equilibrada. Es uno de los algoritmos lineares más efectivos, resulta útil si se quieren ordenar claves largas de manera estable, puesto que las recorre en tiempo O(n), sus desventajas son que puede ser lento al compararse con otros como Merge y QuickSort, se tiene que adaptar dependiendo de si se quiere trabajar con cadenas o números, además de que utiliza memoria adicional del mismo tamaño que la del archivo a ordenar. 
 
 \subsubsection{Consideraciones}
-Para que pueda funcionar correctamente se necesita que no haya un salto de línea adicional al final del archivo ordenar y que este exista. 
+Para que pueda funcionar correctamente se necesita que no haya un salto de línea adicional al final del archivo ordenar y que este exista en la carpeta del proyecto. 
 
 \subsection{Main}
 La clase Main contiene al método main del del programa. EL método main sirve únicamente para desplegar el menú y para llamar a los métodos de los diferentes ordenamientos. Primero, pide al usuario el nombre del archivo a ordenar y lo guarda como cadena. Con una instancia de File, el programa verifica que el archivo exista. Si es así, continua con la ejecución, si no, se termina prematuramente la ejecución.
@@ -437,7 +439,7 @@ Definitivamente los objetivos propuestos al inicio del proyecto fueron logrados.
 Lo más claro es que su pudieron implementar los algoritmos de ordenamiento externo, Polifase, Mezcla Equilibrada y RadixSort sin ninguna complicación. Para poder hacer esto fue necesario aprender a utilizar las herramientas necesarias para manipular archivos de texto, específicamente en Java. Por último, y lo más importante para cumplir estos objetivos fue el trabajo en equipo. Gracias a la buena organización y comunicación que siempre se tuvo desde el principio fue que el proyecto salió bien, cumpliendo con todos los requerimientos e incluso con algunas cosas extra.
 
 \subsection{Sofía Elizabeth Cabello Díaz}
-Para concluir, este proyecto me hizo llevar a la práctica lo visto en teoría acerca de algoritmos de ordenamiento externo, ahora entiendo más cómo funcionan al usar la memoria externa para ir guardando el proceso hasta terminar de ordenar las claves. Considero que fue muy útil para conocer las clases en Java relevantes para el manejo y trabajo con archivos, así como otros conceptos, como paquetería y documentación usando Javadoc. Adicionalmente, fomentó el trabajo en equipo y el compañerismo para poder terminar de buena forma el proyecto.
+Para concluir, este proyecto me hizo llevar a la práctica lo visto en teoría acerca de algoritmos de ordenamiento externo, ahora entiendo más cómo funcionan al usar la memoria externa para ir guardando el proceso hasta terminar de ordenar las claves. Los objetivos fueron cumplidos, entendí más a estos algoritmos y considero que fue muy útil para conocer las clases en Java relevantes para el manejo y trabajo con archivos, así como otros conceptos, como paquetería y documentación usando Javadoc. Adicionalmente, fomentó el trabajo en equipo y el compañerismo para poder terminar de buena forma el proyecto a pesar de que se llevo a cabo a distancia. 
 
 \subsection{Conclusión general}
 Hoy en día los algoritmos de ordenamiento externo son muy importantes por la gran cantidad de información que se genera en el mundo. Esta información no puede ser almacenada todo en memoria principal, por lo que es necesario utilizar algoritmos capaces de trabajar con archivos cuando se requiere ordenarlos. Este proyecto nos ayudo a comprender mejor el funcionamiento de este tipo de algoritmos ya que al programarlos se tuvo que comprender su lógica para poder implementarlos.
