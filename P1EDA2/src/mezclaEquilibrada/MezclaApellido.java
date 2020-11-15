@@ -87,7 +87,7 @@ public class MezclaApellido extends MezclaEquilibrada{
      * Sobreescritura de mezclaD para ordenar claves de cadenas de texto de los apellidos.
      * Este método se encarga de mezclar las particiones contenidas en dos archivos
      * auxiliares para producir secuencias ordenadas escritas en otro archivo.
-     * @param b Booleano que indica si el archivo está ordenado.
+     * @param isSorted Booleano que indica si el archivo está ordenado.
      * @param lectura_f1 Buffer del primer archivo auxiliar.
      * @param lectura_f2 Buffer del segundo archivo auxiliar.
      * @param carpetaPath String con la direccion de la carpeta donde se encuentran
