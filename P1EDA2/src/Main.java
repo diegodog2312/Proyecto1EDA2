@@ -7,16 +7,17 @@ import polifase.*;
 import Radix.*;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+La clase Main contiene al método main del del programa.
+*/
 /**
  *
  * @author Sofia
  */
 public class Main {
+    /*
+    EL método main sirve únicamente para desplegar el menú y para llamar a
+    los métodos de los diferentes ordenamientos.
+    */
         public static void main(String[] args) throws IOException{        
         
         System.out.println("PROYECTO 1 EDA II");
