@@ -53,31 +53,60 @@ Los nombres de las clases son Polifase, Merge, InsertionSort y FilesDirect.
 
 \subsection{Clase Polifase}
 La clase polifase es el método principal de polifase. Dentro de ella se pueden encontrar tres variantes del método sort, una para cada criterio de ordenamiento. Lo mismo sucede con las clases Merge e InsertionSort. Para este análisis y explicación del programa, se tomara en cuenta solo la versión para número de cuenta y se mencionarán las diferencias con las variantes.
-
+\par
 El método sortNum recibe como parámetro el nombre del archivo que se va a ordenar. Algo importante que notar es que recibe únicamente el nombre del archivo y no su ruta completa, ya que esta de genera más adelante. 
-
+\par
 Lo primero que hace este método es instanciar algunas de las clases necesarias, como FilesDirect, File, FileReader, BufferedReader, Merge y Dato. Con el método rutaFolder de FilesDirect se obtiene la ruta del directorio donde se guardarán los archivos. En seguida, se crea dicho directorio junto a los archivos.
-
+\par
 Luego, el método comienza con el proceso de separar el archivo de entra en bloques. Dentro de un do while, el programa verifica que haya al menos 10 elementos para crear el primer bloque, si no es así, cuenta cuantos elementos realmente hay. Luego, el programa llama a al método leer dato de la case dato. Este método recibe desde que linea debe empezar a leer los datos hasta que otra linea debe dejar de leerlos y devuelve una lista con objetos Alumno.
-
+\par
 Después, esa lista es ordenada con el ordenamiento interno, en este caso con la versión para números de cuenta llamada inSortNum de la clase InsetionSort. Aquí es donde esta la única diferencia entre las diferentes versiones del método polifase, ya que la versión para nombres llama a inSortNom y la versión para apellidos a inSortApe.
- 
+\par
 posteriormente, se escriben los datos ordenados en el archivo auxiliar F1. Finalmente, el programa verifica que el archivo aun no esté vacío. Si esta vacío, sale del ciclo do-while, si no,vuelve a contar 10 elementos, los ordena y los escribe, esta vez en el archivo F2 (La siguiente escritura será en F1, la siguiente en F2 y así sucesivamente). Este proceso se repite hasta que no haya más datos que leer en el archivo original.
-
+\par
 Una vez que terminó de separar los datos del archivo original entre los archivos F1 y F2, el método llama al método MergeNum de la clase Merge.
 
 \subsection{Clase Merge}
 La clase merge tienen tres métodos, mergeNum, mergeApe y mergeNom, cada una para un criterio de ordenamiento. Como ya se dijo, solo se explicará la versión para número de cuenta y se harán notar las pequeñas diferencias entre las variantes.
-
+\par
 Cunado se instancia a esta clase, el constructor obtiene la ruta al directorio donde se guardarán los archivos con una instancia de la clase FilesDirect, que se almacena como un atributo del objeto.
-
+\par
 Los métodos de Merge reciben 5 parámetros, la ruta de los dos archivos de los que se va a lee,r la de los dos archivos a los que se va a escribir y un parámetro para tener un recuento de en que llamada recursiva se está. 
+\par
+Lo primero que se hace es crear una instancia de la clases File, FileReader y BufferedReader para cada archivo de entrada. En la primera iteración los archivos de entrada serán F1 y F2 que son los archivos donde se colocaron los bloque ordenados internamente. Después, con ayuda del parámetro que nos dice en 
+que llamada recursiva se está, se calcula la cantidad de arrobas que se tienen que contar para llegar a la iteración correcta en los archivos. Las diferentes iteraciones de los archivos se separan por arrobas, por esta razón, es necesario hacer lo anterior.
+\par
+Luego,con la información anterior, se posiciona a los lectores de ambos archivo en la primera linea de la iteración. En seguida, se le la primera linea; si la primer linea de alguno de los dos archivos está vacía, se deduce que la iteración está vacía, lo que significa que el archivo ya está ordenado porque todos los datos ya están en un solo archivo. Si sucede esto, se despliega un mensaje indicando el archivo donde están los datos ordenados y se detienen las llamadas recursivas. Si la primera linea si tienen contenido, se procede a combinar los datos de ambos archivos.
+\par
+En un while que se repite mientras no se llegue al final de archivo, se ejecuta otro while mientras no se llegue al final del archivo o del bloque de datos. El primer while se repite mientras siga habiendo datos en la iteración y el segundo solo mientras haya datos en el bloque de tatos actual.
+\par
+Dentro del segundo while, se convierten las lineas leídas a objetos de tipo Alumno con ayuda del método obtenerDato de la clase dato. Luego, se compara el atributo de número de cuenta de ambos objetos. Los objetos están nombrados como alumL y alumR (izquierda y derecha) donde en el caso de la primera iteración alumR proviene del archivo F1 y alumL de F2. Si el número de cuenta de alumR es mayor al de alumL, se escribe en uno de los archivos, en caso contrario se escribe a alumL. Finalmente, se lee la siguiente linea del archivo cuyo alumno tuvo un número de cuenta menor. Los archivos de escritura se van intercambiando, es decir, en la primero iteración se escribe en F4, la segunda en F3 la tercera en F2 y así sucesivamente hasta que se llegue al final del bloque de datos de uno de los dos archivos.
+\par 
+En las comparaciones anteriores es donde se pueden encontrar las diferencias entre las versiones del método merge. Para nombres, se compara el atributo de nombre de los dos alumnos con el método compareTo justo después de haberles aplicado el método toUpperCase de las cadenas. Si pudo haber utilizado el método compareToIgnoreCase, pero al momento de programar esto no se conocía su existencia. Lo mismo ocurre en la versión para apellidos, pero en lugar de ocupar el atributo de nombre se utiliza el de apellido. 
+\par
+Con este proceso, se logran unir dos de los bloque de una iteración de los archivos, pero hay un problema. Como en el proceso anterior el ciclo se detenía cuando se alcanzaba un espacio en blanco en solo uno de los archivos, pudieron quedar alumnos en el bloque de datos del otro archivo. Por esta razón, en dos ciclos while(Uno para el caso en que los elementos hayan quedado en F1 y otro para el caso en que hayan quedado en F2) se leen y escriben los datos sobrantes. Este proceso se repite para todos los bloques presentes en la iteración.
+\par
+al final de este ciclo, se lee la siguiente linea de ambos archivos. Si está vacía o es null en alguno de los dos archivos, significa que no hay un bloque más, por lo que se sale del ciclo. Si tienen contenido se repite el ciclo.
+\par
+Después de terminar el ciclo anterior, se terminaron de unir todos los pares de archivos, pero ¿Qué pasa si alguno de los archivos tiene un bloque más que el otro? Ese último bloque es ignorado. Por esta razón, después de salir del ciclo anterior, otro par de ciclos (Uno para el caso en que el bloque extra hayan quedado en F1 y otro para el caso en que haya quedado en F2) se leen los datos del archivo de entrada y se escriben en el correspondiente de salida.
+\par
+Luego de terminar el proceso, se hace una llamada recursiva al mismo método, donde los archivos de lectura se vuelven los de escritura y los de escritura los de lectura. Finalmente, se utiliza el método close de las instancias de bufferedReader y FileReader. 
+\subsection{Clase InsertionSort}
+Como su nombre indica, esta clase almacena métodos para realizar Insertion Sort con los diferentes criterios de ordenamiento. Se explicará la versión para número de cuenta y se expondrán las diferencias entre las versiones. Este método recibe un ArrayList de objetos Alumno. 
+\par
+Después, con el método size de ArratList se obtiene la cantidad de elemento de la lista. Luego, se recorre la lista desde 1 hasta $n-1$ y cada elemento se compara con los que están antes de él(que están ordenados) hasta que se encuentre uno que sea menor o se llegue al comienzo de la lista. En ese momento, se inserta al elemento justo después del elemento que es menor que él, o al inicio de la lista, si es que es el menor de todos. Por último, el método devuelve la lista ordenada.
+\par 
+Para hacer las comparaciones entre elementos se utiliza el getter getNoCuenta() de los alumnos y el comparador de relación $<=$ de java. Aquí es donde esta la diferencia entre las versiones. para nombres y apellidos se utiliza el método compareTo de las cadenas. Para evitar errores, se utiliza el método toUpperCase justo antes del anterior.
 
-Lo primero que se hace es crear dos instancias de las clases File, File
-
-
-
-
-
-
+\section{Clase Main}
+La clase Main contiene al método main del del programa. EL método main sirve únicamente para desplegar el menú y para llamar a los métodos de los diferentes ordenamientos. Primero, pide al usuario el nombre del archivo a ordenar y lo guarda como cadena. Luego, despliega un menú con los diferentes ordenamientos. Cuando el usuario elige una opción, el programa la almacena como una cadena. Después, en una serie de if-else, se utiliza el método equals de las cadenas para comparar lo ingresado por el usuario con las diferentes opciones. Se eligió esta aproximación debido a que evita que el programa se cierre de manera inesperada por el ingreso de tipos de datos diferentes a los esperados.
+\par
+Si el usuario elige cualquiera de los algoritmos, se despliega otro menú que le indica elegir por que criterio quiere ordenar los datos. Al igual que antes, se recibe la opción del usuario como cadena para evitar errores relacionados con el tipo de dato. Después, esa cadena se convierte en un entero con el método valueOf y en un switch se valida la opción del usuario. 
+\par
+En caso de quiera ordenar con Mezcla equilibrada, el programa utiliza polimorfismo para ordenar por el criterio correcto. A una variable de la clase Mezcla equilibrada, se le asigna la referencia a una instancia de su clases hijas MezclaNombre, MezclaApellido o MezclaCuenta dependiendo del criterio de ordenamiento elegido. Por último, se llama al método mezcla de la clase padre.
+\par
+En caso de elegir polifase, se creará una instancia de la clase de mismo nombre. Dependiendo del criterio de ordenamiento, se llamará la al método sortNum, sortNom o sortApe para ordenar por número de cuenta, nombre o apellido respectivamente.
+\par
+Por último, en caso de elegir radix, se creará una instancia de RadixSort y se llamará a los métodos RadixSortN, RadixSortA RadixC para ordenar por nombre, apellido o numero de cuenta respectivamente, dependiendo de la opción elegida por el usuario.
+     
 \end{document}
