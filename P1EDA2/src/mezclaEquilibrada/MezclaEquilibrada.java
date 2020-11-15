@@ -9,14 +9,19 @@ import java.io.IOException;
 /**
  * @author Diego Ignacio Nuñez Hernandez
  * @version 1.0
- * Esta clase es la encargada de crear el directorio y los archivos necesarios
- * para el ordenamiento. Además, se encarga de ejecutar los métdodos hasta que
+ * Esta clase es la encargada de crear el directorio y los archivos auxiliares
+ * para el ordenamiento. Además, se encarga de ejecutar los métodos necesarios hasta que
  * se haya podido cumplir con el objetivo de ordenar.
  */
 public abstract class MezclaEquilibrada {      
-    
+    /**
+     * Este método es el principal de la clase. Aquí se instancian todos los 
+     * archivos y se mandan a llamar a los métodos.
+     * @param archivo Nombre del archivo a ordenar.
+     * @throws IOException Excepción.
+     */
     public void mezcla(String archivo) throws IOException{
-        boolean b;
+        boolean isSorted;
         int iteraciones=0;
         String carpetaPath;
         
@@ -46,12 +51,12 @@ public abstract class MezclaEquilibrada {
         FileReader fr_f2 = new FileReader(f2);
         BufferedReader lectura_f2 = new BufferedReader(fr_f2);
         
-        b = mezclaE(reader, carpetaPath);    
+        isSorted = mezclaE(reader, carpetaPath);    
         do{
-            mezclaD(b,lectura_f1,lectura_f2, carpetaPath);
-            b = mezclaE(lectura_f0, carpetaPath);
+            mezclaD(isSorted,lectura_f1,lectura_f2, carpetaPath);
+            isSorted = mezclaE(lectura_f0, carpetaPath);
             iteraciones++;
-        } while(b==false);
+        } while(isSorted==false);
         
         lectura_f0.close();
         lectura_f1.close();
@@ -67,7 +72,7 @@ public abstract class MezclaEquilibrada {
     }
     
     /**
-     * Este método se encarga de la primera parte del algoritmo de Mezcla Equilbrada, 
+     * Este método se encarga de la primera parte del algoritmo de Mezcla Equilibrada, 
      * el cual consiste en realizar particiones tomando secuencias ordenadas de
      * máxima longitud.
      * @param reader Buffer del archivo a particionar.
@@ -89,5 +94,5 @@ public abstract class MezclaEquilibrada {
      * @throws FileNotFoundException Excepción.
      * @throws IOException Excepción.
      */
-    public abstract void mezclaD(boolean b, BufferedReader lectura_f1, BufferedReader lectura_f2, String carpetaPath) throws FileNotFoundException, IOException;    
+    public abstract void mezclaD(boolean isSorted, BufferedReader lectura_f1, BufferedReader lectura_f2, String carpetaPath) throws FileNotFoundException, IOException;    
 }

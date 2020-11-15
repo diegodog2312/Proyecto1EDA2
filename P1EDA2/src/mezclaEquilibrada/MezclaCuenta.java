@@ -14,7 +14,7 @@ import dato.*;
 public class MezclaCuenta extends MezclaEquilibrada{    
     /**
      * Sobreescritura de mezclaE para ordenar claves enteras del numero de cuenta.
-     * Este método se encarga de la primera parte del algoritmo de Mezcla Equilbrada, 
+     * Este método se encarga de la primera parte del algoritmo de Mezcla Equilibrada, 
      * el cual consiste en realizar particiones tomando secuencias ordenadas de
      * máxima longitud.
      * @param reader Buffer del archivo a particionar.
@@ -35,10 +35,8 @@ public class MezclaCuenta extends MezclaEquilibrada{
         Dato dato = new Dato();                     
         
         cadena=reader.readLine();       
-        if(cadena==null){            
-            isSorted = false;
-            return isSorted;
-        }
+        if(cadena==null)         
+            return isSorted;   
         if(cadena.equals("#"))
             cadena = reader.readLine();
         if(cadena.isEmpty())
@@ -99,8 +97,8 @@ public class MezclaCuenta extends MezclaEquilibrada{
      * @throws IOException Excepción.
      */
     @Override
-    public void mezclaD(boolean b,BufferedReader lectura_f1, BufferedReader lectura_f2, String carpetaPath) throws FileNotFoundException, IOException {
-        if(b==true) return;
+    public void mezclaD(boolean isSorted,BufferedReader lectura_f1, BufferedReader lectura_f2, String carpetaPath) throws FileNotFoundException, IOException {
+        if(isSorted==true) return;
         String cadenaf1;
         String cadenaf2;
   

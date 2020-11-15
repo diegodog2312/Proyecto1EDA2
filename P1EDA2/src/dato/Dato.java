@@ -31,24 +31,23 @@ public class Dato {
         
         File archivo = new File(archivoE);        
         BufferedReader lectura;
-        try (FileReader lector = new FileReader(archivo)) {
-            lectura = new BufferedReader(lector);
-            for(int i=0; i<inicio; i++){
-                lectura.readLine();
-            }   
-            while(inicio<fin){            
-                cadena = lectura.readLine();                
-                Alumno alumno = obtenerDato(cadena);
-                datos.add(alumno);
-                inicio++;
-            }
-        }
+        FileReader lector = new FileReader(archivo);
+        lectura = new BufferedReader(lector);
+        for(int i=0; i<inicio; i++){
+            lectura.readLine();
+        }   
+        while(inicio<fin){            
+            cadena = lectura.readLine();                
+            Alumno alumno = obtenerDato(cadena);
+            datos.add(alumno);
+            inicio++;
+        }        
         lectura.close();
         return datos;
     }
     
     /**
-     * Este método escribe una lista de objetos de tipo alumno en un ardchivo de texto.
+     * Este método escribe una lista de objetos de tipo alumno en un archivo de texto.
      * @param alumnos ArrayList de alumnos a escribir.
      * @param archivoD Nombre del archivo donde se va a escribir.
      * @throws IOException Excepción.
@@ -96,7 +95,7 @@ public class Dato {
     }
     
     /**
-     * Este método recibe una cadena y la escibe en el archivo especificado.
+     * Este método recibe una cadena y la escribe en el archivo especificado.
      * @param archivoD Nombre del archivo donde se va a escribir.
      * @param string Cadena a escribir.
      * @throws IOException Excepción.
@@ -121,7 +120,7 @@ public class Dato {
     }
 
     /**
-     * Este método recibe un objeto de tipo alumno y lo escribe en un archivo de texto.
+     * Este método recibe un objeto de tipo Alumno y lo escribe en un archivo de texto.
      * @param alumno Objeto de tipo alumno a escribir.
      * @param archivoD Nombre del archivo donde se va a escribir.
      * @throws IOException Excepción.
@@ -136,7 +135,7 @@ public class Dato {
     }
     
     /**
-     * Este método recibe un objeto de tipo alumno y lo escribe en un archivo de texto 
+     * Este método recibe un objeto de tipo Alumno y lo escribe en un archivo de texto 
      * agregando un salto de línea al final.
      * @param alumno Objeto de tipo alumno a escribir.
      * @param archivoD Nombre del archivo donde se va a escribir.
