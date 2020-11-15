@@ -6,7 +6,7 @@ import java.io.IOException;
 import dato.*;
 
 /**
- * Esta clase se encarga de ordenar las claves del numero de cuenta de 
+ * Esta clase se encarga de ordenar las claves del nombre de 
  * un alumno en un archivo de texto.
  * @author Diego Ignacio Nunez Hernandez
  * @version 1.0 
@@ -14,7 +14,7 @@ import dato.*;
 public class MezclaNombre extends MezclaEquilibrada{
     /**
      * Sobreescritura de mezclaE para ordenar claves de cadenas de texto de los nombres.
-     * Este método se encarga de la primera parte del algoritmo de Mezcla Equilbrada, 
+     * Este método se encarga de la primera parte del algoritmo de Mezcla Equilibrada, 
      * el cual consiste en realizar particiones tomando secuencias ordenadas de
      * máxima longitud.
      * @param reader Buffer del archivo a particionar.
@@ -35,10 +35,8 @@ public class MezclaNombre extends MezclaEquilibrada{
         Dato dato = new Dato();                           
                                         
         cadena=reader.readLine();
-        if(cadena==null){            
-            isSorted = false;
-            return isSorted;
-        }
+        if(cadena==null)         
+            return isSorted;       
         if(cadena.equals("#"))
             cadena = reader.readLine();
         if(cadena.isEmpty())
@@ -99,11 +97,11 @@ public class MezclaNombre extends MezclaEquilibrada{
      * @throws IOException Excepción.
      */
     @Override
-    public void mezclaD(boolean b,BufferedReader lectura_f1, BufferedReader lectura_f2, String carpetaPath) throws FileNotFoundException, IOException {
-        if(b==true) return;
+    public void mezclaD(boolean isSorted,BufferedReader lectura_f1, BufferedReader lectura_f2, String carpetaPath) throws FileNotFoundException, IOException {
+        if(isSorted==true) return;
         String cadenaf1;
         String cadenaf2;
-  
+              
         Alumno alumnof1;
         Alumno alumnof2;
         
