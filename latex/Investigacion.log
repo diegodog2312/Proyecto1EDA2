@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.8)  13 NOV 2020 22:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.15)  15 NOV 2020 11:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,9 +6,9 @@ entering extended mode
 (./Investigacion.tex
 LaTeX2e <2020-10-01> patch level 2
 L3 programming layer <2020-10-27> xparse <2020-03-03>
-(d:/Programas/texlive/2020/texmf-dist/tex/latex/base/article.cls
+(d:/programas/texlive/2020/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-(d:/Programas/texlive/2020/texmf-dist/tex/latex/base/size11.clo
+(d:/programas/texlive/2020/texmf-dist/tex/latex/base/size11.clo
 File: size11.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
 \c@part=\count175
@@ -23,21 +23,21 @@ File: size11.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
 )
-(d:/Programas/texlive/2020/texmf-dist/tex/generic/babel/babel.sty
+(d:/programas/texlive/2020/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2020/10/27 3.51 The Babel package
 
-(d:/Programas/texlive/2020/texmf-dist/tex/generic/babel/babel.def
+(d:/programas/texlive/2020/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2020/10/27 3.51 Babel common definitions
 \babel@savecnt=\count183
 \U@D=\dimen139
 \l@babelnohyphens=\language86
 
-(d:/Programas/texlive/2020/texmf-dist/tex/generic/babel/txtbabel.def)
+(d:/programas/texlive/2020/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
 )
 \bbl@dirlevel=\count184
 
-(d:/Programas/texlive/2020/texmf-dist/tex/generic/babel-spanish/spanish.ldf
+(d:/programas/texlive/2020/texmf-dist/tex/generic/babel-spanish/spanish.ldf
 Language: spanish.ldf 2016/03/03 v5.0p Spanish support from the babel system
 \es@quottoks=\toks15
 \es@quotdepth=\count185
@@ -46,31 +46,31 @@ Package babel Info: Making . an active character on input line 662.
 Package babel Info: Making < an active character on input line 707.
 Package babel Info: Making > an active character on input line 707.
 ))
-(d:/Programas/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
+(d:/programas/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
 
-(d:/Programas/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
+(d:/programas/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks16
 )
-(d:/Programas/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
+(d:/programas/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
 
-(d:/Programas/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
+(d:/programas/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(d:/Programas/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+(d:/programas/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 105.
 
-(d:/Programas/texlive/2020/texmf-dist/tex/latex/graphics-def/pdftex.def
+(d:/programas/texlive/2020/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen140
 \Gin@req@width=\dimen141
 )
-(d:/Programas/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+(d:/programas/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
 \l__kernel_color_stack_int=\count186
 \l__pdf_internal_box=\box47
@@ -97,7 +97,7 @@ LaTeX Font Info:    ... okay on input line 14.
 LaTeX Info: Redefining \. on input line 14.
 LaTeX Info: Redefining \% on input line 14.
 
-(d:/Programas/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+(d:/programas/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count187
 \scratchdimen=\dimen142
@@ -111,12 +111,12 @@ LaTeX Info: Redefining \% on input line 14.
 \makeMPintoPDFobject=\count192
 \everyMPtoPDFconversion=\toks18
 )
-(d:/Programas/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(d:/programas/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
-(d:/Programas/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+(d:/programas/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
@@ -129,37 +129,41 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 3
 1.
 
-(d:/Programas/texlive/2020/texmf-dist/tex/latex/base/omscmr.fd
+(d:/programas/texlive/2020/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 31.
  [1
 
-{d:/Programas/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [
-3]
-(./Investigacion.aux
+{d:/programas/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [
+3] [4]
+[5]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 97.
+ [6] [7] (./Investigacion.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 ) ) 
 Here is how much of TeX's memory you used:
- 2353 strings out of 479485
- 34162 string characters out of 5870960
+ 2355 strings out of 479485
+ 34198 string characters out of 5870959
  327518 words of memory out of 5000000
- 19383 multiletter control sequences out of 15000+600000
- 539592 words of font info for 44 fonts, out of 8000000 for 9000
+ 19385 multiletter control sequences out of 15000+600000
+ 539951 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,7n,72p,758b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
-<d:/Programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
-pfb><d:/Programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.
-pfb><d:/Programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.
-pfb><d:/Programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.
-pfb><d:/Programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
-.pfb>
-Output written on Investigacion.pdf (3 pages, 67955 bytes).
+ 66i,7n,72p,858b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
+<d:/programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
+pfb><d:/programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10
+.pfb><d:/programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10
+.pfb><d:/programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12
+.pfb><d:/programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17
+.pfb><d:/programas/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb>
+Output written on Investigacion.pdf (7 pages, 87877 bytes).
 PDF statistics:
- 34 PDF objects out of 1000 (max. 8388607)
- 23 compressed objects within 1 object stream
+ 52 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
