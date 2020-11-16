@@ -3,6 +3,11 @@ package polifase;
 import java.io.File;
 import java.io.IOException;
 
+/**
+*Esta clase hace el manejo de archivos específico de polifase que no hace la clase datos.
+*@author Ricardo López
+*/
+
 public class FilesDirect {
     private String folderpath;
 
